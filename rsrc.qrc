@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/arrowNext.png</file>
+        <file>images/arrowPrev.png</file>
+        <file>images/arrowNextPressed.png</file>
+        <file>images/arrowPrevPressed.png</file>
+    </qresource>
+    <qresource prefix="/database">
+        <file>test.json</file>
+    </qresource>
+</RCC>
