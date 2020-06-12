@@ -68,7 +68,7 @@ QTabBar::tab:selected {
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -358,6 +358,40 @@ QPushButton:pressed{
        <attribute name="title">
         <string>Настройки</string>
        </attribute>
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times New Roman</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Parse!</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
