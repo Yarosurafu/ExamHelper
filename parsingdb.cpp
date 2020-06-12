@@ -32,13 +32,17 @@ void ParsingDB::parse(const QString path){
 
     //----------Opening HTML-file----------
     QFile html(path);
-    if(!html.open(QIODevice::ReadOnly)){
+    if(!html.open(QIODevice::ReadOnly | QIODevice::Text)){
         qWarning("Cannot open HTML-file");
         return;
     }
     //-------------------------------------
 
     //-------------Parsing-----------------
-    QTextStream
+    QTextStream in(&html);
+    while(!in.atEnd()){
+    //TODO
+        QString line = in.readLine();
+    }
     //-------------------------------------
 }
