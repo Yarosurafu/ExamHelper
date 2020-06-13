@@ -1,4 +1,4 @@
-#include "parsingdb.h"
+﻿#include "parsingdb.h"
 #include "QFile"
 #include "QJsonObject"
 #include "QByteArray"
@@ -22,7 +22,7 @@ ParsingDB::ParsingDB()
 void ParsingDB::parse(const QString path){
     //----------Opening JSON-file----------
     QFile loadFile(":/database/test.json");
-    if(!loadFile.open(QIODevice::ReadWrite)){
+    if(!loadFile.open(QIODevice::ReadOnly)){
         qWarning("Cannot open JSON-file");
         return;
     }
@@ -34,7 +34,7 @@ void ParsingDB::parse(const QString path){
 
     //----------Opening HTML-file----------
     QFile html(path);
-    if(!html.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if(!html.open(QIODevice::ReadOnly)){
         qWarning("Cannot open HTML-file");
         return;
     }
@@ -48,12 +48,15 @@ void ParsingDB::parse(const QString path){
         if(line.contains("<h1 class=\"text-center\">")){
             line.remove("<h1 class=\"text-center\">");
             line.remove("</h1>");
+            line.remove("\t");
             //Now line is a current subject matter
-            QJsonArray currMatter;
+            QJsonObject currMatter;
+            QJsonArray currMatterQuestions;
+            int matterInd = indexOfElement(questions, line);
             //If DB already has current subject matter
-            if(questions.contains(line)){
-                int matterInd = indexOfElement(questions, line);
-                currMatter = questions[matterInd].toArray();
+            if(matterInd >= 0){
+                currMatter = questions[matterInd].toObject();
+                currMatterQuestions = currMatter["questions"].toArray();
             }
             //-----Getting question-----
             QString question;
@@ -62,6 +65,8 @@ void ParsingDB::parse(const QString path){
             question.remove("<h4><b>");
             question.remove("</b>");
             question.remove("<ul>");
+            QString buff = question.chopped((question.size() - 14));
+            question.remove(buff);
             //--------------------------
 
             //------Getting answers-----
@@ -70,7 +75,9 @@ void ParsingDB::parse(const QString path){
                 QString answer;
                 do{
                     answer = in.readLine();
-                } while(answer == "</li>" || answer == "");
+                    answer.remove("\t");
+                } while(answer.contains("</li>") || answer == "");
+
                 //If answer is correct
                 if(answer.contains("<li class=\"list-group-item\" style=\"background-color:#C6FFCD;border:0px none;\">")){
                     answer = in.readLine();
@@ -78,6 +85,7 @@ void ParsingDB::parse(const QString path){
                 }
                 else if(answer.contains("<li class=\"list-group-item\" style=\";border:0px none;\">"))
                     answer = in.readLine();
+                answer.remove("\t");
                 answers.append(answer);
             }
             //--------------------------
@@ -89,13 +97,25 @@ void ParsingDB::parse(const QString path){
             };
 
             //Saving
-            currMatter.append(fullQuestion);
-            if(questions.contains(line)){
-                int matterInd = indexOfElement(questions, line);
-                questions[matterInd] = currMatter;
+            QFile saveFile("C:/DOSGames/test.json");
+            if(!saveFile.open(QIODevice::WriteOnly)){
+                qWarning("Cannot open save JSON");
+                return;
+            }
+            currMatterQuestions.append(fullQuestion);
+            QJsonObject newSubject = {
+                {"subject", line},
+                {"questions", currMatterQuestions}
+            };
+            if(matterInd >= 0){
+                questions[matterInd] = newSubject;
+            }
+            else{
+                questions.append(newSubject);
             }
             database["questions"] = questions;
-            loadFile.write(QJsonDocument(database).toJson());
+            saveFile.write(QJsonDocument(database).toJson());
+            saveFile.close();
         }
     }
     //-------------End loop----------------
@@ -112,8 +132,10 @@ void ParsingDB::parse(const QString path){
  * does not contain an element
  */
 int ParsingDB::indexOfElement(QJsonArray array, const QString element){
-    for(size_t i = 0; i < array.size(); ++i)
-        if(array.at(i) == element)
+    for(size_t i = 0; i < array.size(); ++i){
+        QJsonObject subject = array.at(i).toObject();
+        if(subject["subject"] == element)
             return i;
+    }
     return -1;
 }
