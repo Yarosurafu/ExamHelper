@@ -22,5 +22,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_parseButt_clicked()
 {
-    ParsingDB::parse("C:/Users/yarik/Qt/ExamHelper/HTML/1.html");
+    ParsingDB::parse("C:/Users/yarik/Downloads/1.html");
 }
