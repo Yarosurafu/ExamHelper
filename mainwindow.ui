@@ -358,7 +358,7 @@ QPushButton:pressed{
        <attribute name="title">
         <string>Настройки</string>
        </attribute>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="parseButt">
         <property name="geometry">
          <rect>
           <x>20</x>
