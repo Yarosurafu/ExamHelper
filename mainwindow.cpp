@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "parsingdb.h"
 #include <QJsonDocument>
 #include <QFile>
 #include <QMessageBox>
@@ -17,4 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_parseButt_clicked()
+{
+    ParsingDB::parse("C:/Users/yarik/Downloads/1.html");
 }
