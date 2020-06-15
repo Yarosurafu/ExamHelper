@@ -25,7 +25,8 @@ HEADERS += \
     parsingdb.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    parsingProgress.ui
 
 RESOURCES += \
     rsrc.qrc \
