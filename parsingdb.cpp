@@ -5,6 +5,7 @@
 #include "QJsonDocument"
 #include "QTextStream"
 #include "QJsonArray"
+#include "QTextCodec"
 
 ParsingDB::ParsingDB()
 {
@@ -20,6 +21,7 @@ ParsingDB::ParsingDB()
  * @param path Path to the HTML-file
  */
 void ParsingDB::parse(const QString path){
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     //----------Opening JSON-file----------
     QFile loadFile(":/database/test.json");
     if(!loadFile.open(QIODevice::ReadOnly)){
