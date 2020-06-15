@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -17,6 +17,8 @@ public:
 
 private slots:
     void on_parseButt_clicked();
+
+    void on_pickFileButt_clicked();
 
 private:
     Ui::MainWindow *ui;
