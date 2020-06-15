@@ -58,51 +58,55 @@ void ParsingDB::parse(const QString path){
                 currMatter = questions[matterInd].toObject();
                 currMatterQuestions = currMatter["questions"].toArray();
             }
-            //-----Getting question-----
-            QString question;
-            for(size_t i = 0; i < 3; ++i)
-                question = in.readLine();
-            question.remove("<h4><b>");
-            question.remove("</b>");
-            question.remove("<ul>");
-            QString buff = question.chopped((question.size() - 14));
-            question.remove(buff);
-            //--------------------------
 
-            //------Getting answers-----
-            QJsonArray answers;
-            for(int i = 0; i < 5; ++i){
-                QString answer;
+            for(int i = 0; i < 20; ++i){
+                //-----Getting question-----
+                QString question;
                 do{
-                    answer = in.readLine();
+                    question = in.readLine();
+                }while(!question.contains("<h4><b>"));
+                question.remove("<h4><b>");
+                question.remove("</b>");
+                question.remove("<ul>");
+                if(question.contains("</h4>")) question.remove("</h4>");
+                QString buff = question.chopped((question.size() - 14));
+                question.remove(buff);
+                if(question.at(0) == ' ') question.remove(0, 1);
+                //--------------------------
+
+                //------Getting answers-----
+                QJsonArray answers;
+                for(int i = 0; i < 5; ++i){
+                    QString answer;
+                    do{
+                        answer = in.readLine();
+                        answer.remove("\t");
+                    } while(answer.contains("</li>") || answer == "");
+
+                    //If answer is correct
+                    if(answer.contains("<li class=\"list-group-item\" style=\"background-color:#C6FFCD;border:0px none;\">")){
+                        answer = in.readLine();
+                        answer.append("*");
+                    }
+                    else if(answer.contains("<li class=\"list-group-item\" style=\";border:0px none;\">"))
+                        answer = in.readLine();
                     answer.remove("\t");
-                } while(answer.contains("</li>") || answer == "");
-
-                //If answer is correct
-                if(answer.contains("<li class=\"list-group-item\" style=\"background-color:#C6FFCD;border:0px none;\">")){
-                    answer = in.readLine();
-                    answer.append("*");
+                    answers.append(answer);
                 }
-                else if(answer.contains("<li class=\"list-group-item\" style=\";border:0px none;\">"))
-                    answer = in.readLine();
-                answer.remove("\t");
-                answers.append(answer);
+                //--------------------------
+                //Creating question with the answers
+                QJsonObject fullQuestion = {
+                    {"question", question},
+                    {"answers", answers}
+                };
+                currMatterQuestions.append(fullQuestion);
             }
-            //--------------------------
-
-            //Creating question with the answers
-            QJsonObject fullQuestion = {
-                {"question", question},
-                {"answers", answers}
-            };
-
             //Saving
             QFile saveFile("C:/DOSGames/test.json");
             if(!saveFile.open(QIODevice::WriteOnly)){
                 qWarning("Cannot open save JSON");
                 return;
             }
-            currMatterQuestions.append(fullQuestion);
             QJsonObject newSubject = {
                 {"subject", line},
                 {"questions", currMatterQuestions}
