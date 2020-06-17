@@ -24,7 +24,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_parseButt_clicked()
 {
     static ParsingProgress progress(this);
-    std::chrono::seconds dura(5);
     QString dirName = ui->directoryLine->text();
     ui->directoryLine->clear();
     QDir directory(dirName);
@@ -36,7 +35,6 @@ void MainWindow::on_parseButt_clicked()
         progress.setProgress(i);
         if(files[i].absoluteFilePath().contains(".html"))
             ParsingDB::parse(files[i].absoluteFilePath());
-        std::this_thread::sleep_for(dura);
     }
     progress.hide();
     progress.resetProgress();
