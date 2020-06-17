@@ -4,6 +4,7 @@
         <file>images/arrowPrev.png</file>
         <file>images/arrowNextPressed.png</file>
         <file>images/arrowPrevPressed.png</file>
+        <file>images/arrowDown.png</file>
     </qresource>
     <qresource prefix="/database">
         <file>test.json</file>
