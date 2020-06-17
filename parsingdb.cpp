@@ -6,6 +6,8 @@
 #include "QTextStream"
 #include "QJsonArray"
 #include "QTextCodec"
+#include "QFileInfo"
+#include <QApplication>
 
 ParsingDB::ParsingDB()
 {
@@ -23,7 +25,8 @@ ParsingDB::ParsingDB()
 void ParsingDB::parse(const QString path){
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     //----------Opening JSON-file----------
-    QFile loadFile(":/database/test.json");
+    QString filePath = QApplication::applicationDirPath();
+    QFile loadFile(filePath + "/database/test.json");
     if(!loadFile.open(QIODevice::ReadOnly)){
         qWarning("Cannot open JSON-file");
         return;
@@ -105,8 +108,8 @@ void ParsingDB::parse(const QString path){
                 currMatterQuestions.append(fullQuestion);
             }
             //Saving
-            QFile saveFile(":/database/test.json");
-            if(!saveFile.open(QIODevice::WriteOnly)){
+            QFile saveFile(filePath + "/database/test.json");
+            if(!saveFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)){
                 qWarning("Cannot open save JSON");
                 return;
             }
