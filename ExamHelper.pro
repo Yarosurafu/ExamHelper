@@ -31,8 +31,7 @@ FORMS += \
     parsingprogress.ui
 
 RESOURCES += \
-    rsrc.qrc \
-    test.json
+    rsrc.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
