@@ -18,14 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    parsingdb.cpp
+    parsingdb.cpp \
+    parsingprogress.cpp
 
 HEADERS += \
     mainwindow.h \
-    parsingdb.h
+    parsingdb.h \
+    parsingprogress.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    parsingprogress.ui
 
 RESOURCES += \
     rsrc.qrc \
