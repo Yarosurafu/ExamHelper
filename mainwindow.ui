@@ -68,7 +68,7 @@ QTabBar::tab:selected {
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -88,12 +88,12 @@ QTabBar::tab:selected {
       <property name="tabBarAutoHide">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="testsTab">
        <attribute name="title">
         <string>Тесты</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="searchTab">
        <attribute name="title">
         <string>Поиск вопросов</string>
        </attribute>
@@ -354,27 +354,45 @@ QPushButton:pressed{
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="optionsTab">
        <attribute name="title">
         <string>Настройки</string>
        </attribute>
-       <widget class="QPushButton" name="parseButt">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>131</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times New Roman</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{	
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_2">
+          <property name="styleSheet">
+           <string notr="true">QFrame{
+	
+	background-color: rgb(33, 59, 76);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLineEdit" name="directoryLine"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pickFileButt">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
 	color: rgb(4, 232, 236);
 	background-color: rgb(22, 40, 52);
 	border: 1px solid rgb(4, 232, 236);
@@ -387,11 +405,60 @@ QPushButton:pressed{
 	border: 1px solid red;
 	border-radius: 20px 10px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Parse!</string>
-        </property>
-       </widget>
+             </property>
+             <property name="text">
+              <string>Pick directory</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="parseButt">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Parse!</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

@@ -1,12 +1,10 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "parsingdb.h"
-#include <QJsonDocument>
-#include <QFile>
-#include <QMessageBox>
-#include <QByteArray>
-#include <QJsonObject>
-#include <QJsonArray>
+
+#include <QFileDialog>
+#include <QDir>
+#include <QFileInfoList>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,5 +20,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_parseButt_clicked()
 {
-    ParsingDB::parse("C:/Users/yarik/Downloads/1.html");
+    QString dirName = ui->directoryLine->text();
+    ui->directoryLine->clear();
+    QDir directory(dirName);
+    QFileInfoList files = directory.entryInfoList();
+    for(int i = 0; i < files.size(); ++i){
+
+    }
+}
+
+void MainWindow::on_pickFileButt_clicked()
+{
+    QString dirName = QFileDialog::getExistingDirectory(this, "Pick up directory with HTML", "C:/", QFileDialog::ShowDirsOnly
+                                                                                                    | QFileDialog::DontResolveSymlinks);
+    ui->directoryLine->setText(dirName);
 }

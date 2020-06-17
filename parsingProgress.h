@@ -1,0 +1,6 @@
+﻿#ifndef PARSINGPROGRESS_H
+#define PARSINGPROGRESS_H
+
+
+
+#endif // PARSINGPROGRESS_H
