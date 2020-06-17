@@ -32,6 +32,7 @@ void ParsingDB::parse(const QString path){
     QJsonDocument doc(QJsonDocument::fromJson(data));
     QJsonObject database = doc.object();
     QJsonArray questions = database["questions"].toArray();
+    loadFile.close();
     //-------------------------------------
 
     //----------Opening HTML-file----------
@@ -104,7 +105,7 @@ void ParsingDB::parse(const QString path){
                 currMatterQuestions.append(fullQuestion);
             }
             //Saving
-            QFile saveFile("C:/DOSGames/test.json");
+            QFile saveFile(":/database/test.json");
             if(!saveFile.open(QIODevice::WriteOnly)){
                 qWarning("Cannot open save JSON");
                 return;
