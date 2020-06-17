@@ -1,4 +1,4 @@
-#ifndef PARSINGPROGRESS_H
+﻿#ifndef PARSINGPROGRESS_H
 #define PARSINGPROGRESS_H
 
 #include <QDialog>
@@ -14,6 +14,10 @@ class ParsingProgress : public QDialog
 public:
     explicit ParsingProgress(QWidget *parent = nullptr);
     ~ParsingProgress();
+    void setProgressMin(const int min);
+    void setProgressMax(const int max);
+    void setProgress(const int progress);
+    void resetProgress();
 
 private:
     Ui::ParsingProgress *ui;
