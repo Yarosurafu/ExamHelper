@@ -100,6 +100,7 @@ void ParsingDB::parse(const QString path){
                     answers.append(answer);
                 }
                 //--------------------------
+
                 //Creating question with the answers
                 QJsonObject fullQuestion = {
                     {"question", question},
@@ -109,7 +110,7 @@ void ParsingDB::parse(const QString path){
             }
             //Saving
             QFile saveFile(filePath + "/database/test.json");
-            if(!saveFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)){
+            if(!saveFile.open(QIODevice::WriteOnly | QIODevice::Text)){
                 qWarning("Cannot open save JSON");
                 return;
             }
