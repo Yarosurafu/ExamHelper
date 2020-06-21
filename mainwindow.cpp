@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_parseButt_clicked()
 {
-    static ParsingProgress progress(this);
+    ParsingProgress progress(this);
     QString dirName = ui->directoryLine->text();
     ui->directoryLine->clear();
     QDir directory(dirName);
