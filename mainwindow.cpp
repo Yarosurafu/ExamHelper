@@ -51,3 +51,9 @@ void MainWindow::on_pickFileButt_clicked()
                                                                                                     | QFileDialog::DontResolveSymlinks);
     ui->directoryLine->setText(dirName);
 }
+
+void MainWindow::on_searchButton_clicked()
+{
+    QString key = ui->userQuestion->text();
+    QString matter = ui->matterComboBox->currentText();
+}
