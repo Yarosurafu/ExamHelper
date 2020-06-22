@@ -2,18 +2,23 @@
 #include "ui_mainwindow.h"
 #include "parsingdb.h"
 #include "parsingprogress.h"
+#include "database.h"
 
 #include <QFileDialog>
 #include <QDir>
 #include <QFileInfoList>
 #include <chrono>
 #include <thread>
+#include <vector>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    std::vector<QString> subjectsNames = db_m.getSubjectsNames();
+    for(size_t i = 0; i < subjectsNames.size(); ++i)
+        ui->matterComboBox->addItem(subjectsNames[i]);
 }
 
 MainWindow::~MainWindow()
