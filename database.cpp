@@ -18,4 +18,10 @@ DataBase::DataBase()
     QJsonDocument db(QJsonDocument::fromJson(data));
     QJsonObject buff = db.object();
     subjects_m = buff["questions"].toArray();
+
+    //-----subjectsNames_m init-----
+    for(int i = 0; i < subjects_m.size(); ++i){
+        QJsonObject currentSubj = subjects_m[i].toObject();
+        subjectsNames_m.push_back(currentSubj["subject"].toString());
+    }
 }
