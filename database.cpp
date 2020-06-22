@@ -20,8 +20,24 @@ DataBase::DataBase()
     subjects_m = buff["questions"].toArray();
 
     //-----subjectsNames_m init-----
-    for(int i = 0; i < subjects_m.size(); ++i){
+    for(size_t i = 0; i < subjects_m.size(); ++i){
         QJsonObject currentSubj = subjects_m[i].toObject();
         subjectsNames_m.push_back(currentSubj["subject"].toString());
+    }
+}
+
+QJsonObject DataBase::searchQuestion(const QString matter, const QString key){
+    QJsonObject currMatter;
+    for(int i = 0; i < subjects_m.size(); ++i){
+        currMatter = subjects_m[i].toObject();
+        if(currMatter["subject"].toString() == matter)
+            break;
+        else if(i == subjects_m.size()){
+            currMatter = {
+                    {"questions", ""},
+                    {"subject", ""}
+                };
+            return currMatter;
+        }
     }
 }
