@@ -10,6 +10,7 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+#include <QJsonObject>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -56,4 +57,9 @@ void MainWindow::on_searchButton_clicked()
 {
     QString key = ui->userQuestion->text();
     QString matter = ui->matterComboBox->currentText();
+    searchedQuestions_m = db_m.searchQuestion(matter, key);
+    currentQuestionInd = 0;
+    QJsonObject currentQuestion = searchedQuestions_m[0].toObject();
+    ui->fullQuestion->setText(currentQuestion["question"].toString());
+    ui->answer->setText(currentQuestion["answer"].toString());
 }
