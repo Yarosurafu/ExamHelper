@@ -11,6 +11,7 @@
 #include <thread>
 #include <vector>
 #include <QJsonObject>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -59,7 +60,41 @@ void MainWindow::on_searchButton_clicked()
     QString matter = ui->matterComboBox->currentText();
     searchedQuestions_m = db_m.searchQuestion(matter, key);
     currentQuestionInd = 0;
-    QJsonObject currentQuestion = searchedQuestions_m[0].toObject();
+    setSearchedQuestion();
+}
+
+void MainWindow::on_nextButton_clicked()
+{
+    if(!searchedQuestions_m.size())
+        return;
+    if(searchedQuestions_m.size() - currentQuestionInd == 1)
+        currentQuestionInd = 0;
+    else
+        ++currentQuestionInd;
+    setSearchedQuestion();
+}
+
+void MainWindow::on_prevButton_clicked()
+{
+    if(!searchedQuestions_m.size())
+        return;
+    if(currentQuestionInd == 0)
+        currentQuestionInd = searchedQuestions_m.size() - 1;
+    else
+        --currentQuestionInd;
+    setSearchedQuestion();
+}
+
+void MainWindow::setSearchedQuestion(){
+    QJsonObject currentQuestion = searchedQuestions_m[currentQuestionInd].toObject();
     ui->fullQuestion->setText(currentQuestion["question"].toString());
     ui->answer->setText(currentQuestion["answer"].toString());
+    if(currentQuestion["question"].toString() == ""){
+        QMessageBox::warning(this, "Поиск вопросов", "Вопросов не было найдено");
+        ui->page->setText("-");
+        return;
+    }
+    QString page = QString::number(currentQuestionInd + 1) + "/"
+            + QString::number(searchedQuestions_m.size());
+    ui->page->setText(page);
 }
