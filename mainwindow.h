@@ -21,8 +21,12 @@ private slots:
 
     void on_pickFileButt_clicked();
 
+    void on_searchButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
+    QJsonArray searchedQuestions_m;
+    int currentQuestionInd;
 };
 #endif // MAINWINDOW_H
