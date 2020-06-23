@@ -20,24 +20,62 @@ DataBase::DataBase()
     subjects_m = buff["questions"].toArray();
 
     //-----subjectsNames_m init-----
-    for(size_t i = 0; i < subjects_m.size(); ++i){
+    for(int i = 0; i < subjects_m.size(); ++i){
         QJsonObject currentSubj = subjects_m[i].toObject();
         subjectsNames_m.push_back(currentSubj["subject"].toString());
     }
 }
 
-QJsonObject DataBase::searchQuestion(const QString matter, const QString key){
+/**
+ * @brief DataBase::searchQuestion
+ * Searching questions of the
+ * matter in database by the key
+ *
+ * @param matter
+ * @param key
+ * @return questions An array of
+ * questions or an array with one
+ * object - nullQuestions, which means
+ * empty question.
+ */
+QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
     QJsonObject currMatter;
+    QJsonArray questions;
+    //----------Searching key-matter----------
     for(int i = 0; i < subjects_m.size(); ++i){
         currMatter = subjects_m[i].toObject();
         if(currMatter["subject"].toString() == matter)
             break;
         else if(i == subjects_m.size()){
-            currMatter = {
-                    {"questions", ""},
-                    {"subject", ""}
-                };
-            return currMatter;
+            QJsonObject nullQuestion = {
+                {"question", ""},
+                {"answer", ""}
+            };
+            questions.append(nullQuestion);
+            return questions;
         }
     }
+    //----------------------------------------
+
+    //------Searching questions by the key----
+    QJsonArray allQuestions = currMatter["questions"].toArray();
+    QJsonObject question;
+    for(int i = 0; i < allQuestions.size(); ++i){
+        question = allQuestions[i].toObject();
+        //Continue if current questions doesn't contain a key-word or phrase
+        if(!question["question"].toString().contains(key, Qt::CaseInsensitive))
+            continue;
+        //Searching true answer to the current question
+        QJsonArray questionAnswers = question["answers"].toArray();
+        for(int j = 0; j < questionAnswers.size(); ++j)
+            if(questionAnswers[j].toString().contains("*")){
+                question = {
+                    {"question", question["question"].toString()},
+                    {"answer", questionAnswers[j].toString()}
+                };
+                questions.append(question);
+            }
+    }
+    //----------------------------------------
+    return questions;
 }
