@@ -23,10 +23,16 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_nextButton_clicked();
+
+    void on_prevButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
     QJsonArray searchedQuestions_m;
     int currentQuestionInd;
+
+    void setSearchedQuestion();
 };
 #endif // MAINWINDOW_H
