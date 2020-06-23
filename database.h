@@ -14,7 +14,7 @@ public:
     std::vector<QString> getSubjectsNames(){
         return subjectsNames_m;
     }
-    QJsonObject searchQuestion(const QString matter, const QString key);
+    QJsonArray searchQuestion(const QString matter, const QString key);
 };
 
 #endif // DATABASE_H
