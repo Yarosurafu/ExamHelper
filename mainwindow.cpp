@@ -106,6 +106,6 @@ void MainWindow::on_startTest_clicked()
 
 void MainWindow::setSubWindow(QWidget *widget){
     auto window = ui->mdiArea->addSubWindow(widget);
-    //window->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
-    window->show();
+    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowSystemMenuHint);
+    window->showMaximized();
 }
