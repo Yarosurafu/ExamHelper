@@ -19,8 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     std::vector<QString> subjectsNames = db_m.getSubjectsNames();
-    for(size_t i = 0; i < subjectsNames.size(); ++i)
+    for(size_t i = 0; i < subjectsNames.size(); ++i){
         ui->matterComboBox->addItem(subjectsNames[i]);
+        ui->mattersList->addItem(subjectsNames[i]);
+    }
 }
 
 MainWindow::~MainWindow()
