@@ -18,7 +18,6 @@ public:
     void setProgressMax(const int max);
     void setProgress(const int progress);
     void resetProgress();
-
 private:
     Ui::ParsingProgress *ui;
 };
