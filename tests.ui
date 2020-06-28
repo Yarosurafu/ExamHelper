@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>409</width>
-    <height>400</height>
+    <height>332</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,25 +16,71 @@
   <property name="windowOpacity">
    <double>0.000000000000000</double>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="radioButton_2">
+   <item row="4" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
-      <string>answer2</string>
+      <string>Answer3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="styleSheet">
+      <string notr="true">QProgressBar:horizontal {
+border-radius: 3px;
+background: rgb(33, 59, 76);
+padding: 1px;
+}
+QProgressBar::chunk:horizontal {
+background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 rgb(85, 0, 255), stop: 1 white);
+}</string>
+     </property>
+     <property name="maximum">
+      <number>30</number>
+     </property>
+     <property name="value">
+      <number>30</number>
      </property>
     </widget>
    </item>
    <item row="7" column="0">
     <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Prev</string>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	image: url(:/icons/images/arrowPrev.png);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{	
+	image: url(:/icons/images/arrowPrevPressed.png);
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
      </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QPushButton" name="pushButton_2">
      <property name="text">
-      <string>Next</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -49,38 +95,113 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QRadioButton" name="radioButton_3">
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
-      <string>answer3</string>
+      <string>Answer1</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QRadioButton" name="radioButton_4">
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
-      <string>answer4</string>
+      <string>Answer2</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QRadioButton" name="radioButton">
+   <item row="7" column="1">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	image: url(:/icons/images/arrowNext.png);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	image: url(:/icons/images/arrowNextPressed.png);
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
-      <string>answer1</string>
+      <string/>
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QRadioButton" name="radioButton_5">
+   <item row="5" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
-      <string>answer5</string>
+      <string>Answer4</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>24</number>
+   <item row="6" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_7">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Answer5</string>
      </property>
     </widget>
    </item>
