@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp \
     parsingdb.cpp \
     parsingprogress.cpp \
+    statistics.cpp \
     tests.cpp
 
 HEADERS += \
@@ -28,11 +29,13 @@ HEADERS += \
     mainwindow.h \
     parsingdb.h \
     parsingprogress.h \
+    statistics.h \
     tests.h
 
 FORMS += \
     mainwindow.ui \
     parsingprogress.ui \
+    statistics.ui \
     tests.ui
 
 RESOURCES += \
