@@ -37,7 +37,7 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="firstAnsw">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -59,7 +59,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="5" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton_6">
+    <widget class="QPushButton" name="fourthAnsw">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -81,7 +81,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="4" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="thirdAnsw">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -103,7 +103,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="3" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="secondAnsw">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: rgb(0, 85, 0);
@@ -125,7 +125,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <widget class="QTextBrowser" name="textBrowser">
+    <widget class="QTextBrowser" name="questionText">
      <property name="styleSheet">
       <string notr="true">QTextBrowser{
 	font: 9pt &quot;Times New Roman&quot;;
@@ -141,7 +141,7 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item row="6" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton_7">
+    <widget class="QPushButton" name="fifthAnsw">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -163,7 +163,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="7" column="0">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="setReminderBut">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -185,7 +185,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="7" column="1">
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="nextQuestBut">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
