@@ -3,15 +3,15 @@
 #include "parsingdb.h"
 #include "parsingprogress.h"
 #include "database.h"
+#include "tests.h"
 
 #include <QFileDialog>
 #include <QDir>
 #include <QFileInfoList>
-#include <chrono>
-#include <thread>
 #include <vector>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <QMdiSubWindow>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,8 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     std::vector<QString> subjectsNames = db_m.getSubjectsNames();
-    for(size_t i = 0; i < subjectsNames.size(); ++i)
+    for(size_t i = 0; i < subjectsNames.size(); ++i){
         ui->matterComboBox->addItem(subjectsNames[i]);
+        ui->mattersList->addItem(subjectsNames[i]);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -97,4 +99,15 @@ void MainWindow::setSearchedQuestion(){
     QString page = QString::number(currentQuestionInd + 1) + "/"
             + QString::number(searchedQuestions_m.size());
     ui->page->setText(page);
+}
+
+void MainWindow::on_startTest_clicked()
+{
+    setSubWindow(new Tests(this));
+}
+
+void MainWindow::setSubWindow(QWidget *widget){
+    auto window = ui->mdiArea->addSubWindow(widget);
+    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowSystemMenuHint);
+    window->showMaximized();
 }

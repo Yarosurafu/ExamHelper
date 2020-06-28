@@ -20,17 +20,23 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     parsingdb.cpp \
-    parsingprogress.cpp
+    parsingprogress.cpp \
+    statistics.cpp \
+    tests.cpp
 
 HEADERS += \
     database.h \
     mainwindow.h \
     parsingdb.h \
-    parsingprogress.h
+    parsingprogress.h \
+    statistics.h \
+    tests.h
 
 FORMS += \
     mainwindow.ui \
-    parsingprogress.ui
+    parsingprogress.ui \
+    statistics.ui \
+    tests.ui
 
 RESOURCES += \
     rsrc.qrc
