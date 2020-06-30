@@ -4,6 +4,7 @@
 #include "parsingprogress.h"
 #include "database.h"
 #include "tests.h"
+#include "statistics.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -103,7 +104,7 @@ void MainWindow::setSearchedQuestion(){
 
 void MainWindow::on_startTest_clicked()
 {
-    setSubWindow(new Tests(this));
+    setSubWindow(new Statistics(25, this));
 }
 
 void MainWindow::setSubWindow(QWidget *widget){
