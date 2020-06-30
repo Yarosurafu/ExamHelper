@@ -104,11 +104,12 @@ void MainWindow::setSearchedQuestion(){
 
 void MainWindow::on_startTest_clicked()
 {
-    setSubWindow(new Statistics(25, this));
+    setSubWindow(new Statistics(25, this), "Результаты");
 }
 
-void MainWindow::setSubWindow(QWidget *widget){
+void MainWindow::setSubWindow(QWidget *widget, QString title){
     auto window = ui->mdiArea->addSubWindow(widget);
     window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowSystemMenuHint);
+    window->setWindowTitle(title);
     window->showMaximized();
 }
