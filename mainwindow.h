@@ -36,6 +36,6 @@ private:
     int currentQuestionInd;
 
     void setSearchedQuestion();
-    void setSubWindow(QWidget* widget);
+    void setSubWindow(QWidget* widget, QString title);
 };
 #endif // MAINWINDOW_H
