@@ -29,13 +29,13 @@ private slots:
 
     void on_startTest_clicked();
 
+    void setSubWindow(QWidget* widget, QString title);
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
     QJsonArray searchedQuestions_m;
     int currentQuestionInd;
-
     void setSearchedQuestion();
-    void setSubWindow(QWidget* widget, QString title);
 };
 #endif // MAINWINDOW_H
