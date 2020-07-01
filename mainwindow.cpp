@@ -104,7 +104,11 @@ void MainWindow::setSearchedQuestion(){
 
 void MainWindow::on_startTest_clicked()
 {
-    setSubWindow(new Statistics(25, this), "Результаты");
+    //TODO: check this pointer
+    Tests *testWindow = new Tests(db_m.getTestVariant(), this);
+    connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(closeActiveSubWindow()));
+    connect(testWindow, SIGNAL(testEnd()), this, SLOT(setSubWindow(new Statistics(15, this), "Результаты")));
+    setSubWindow(testWindow, "Тест");
 }
 
 void MainWindow::setSubWindow(QWidget *widget, QString title){
