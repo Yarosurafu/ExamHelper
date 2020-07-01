@@ -15,6 +15,7 @@ class Tests : public QWidget
 
 public:
     explicit Tests(const QJsonArray questions, QWidget *parent = nullptr);
+    Ui::Tests* getUi();
     ~Tests();
 
 private:
@@ -23,6 +24,8 @@ private:
     Ui::Tests *ui;
 private slots:
     void setQuestion();
+signals:
+    void testEnd();
 };
 
 #endif // TESTS_H
