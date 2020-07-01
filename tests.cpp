@@ -9,6 +9,7 @@ Tests::Tests(const QJsonArray questions, QWidget *parent) :
     ui(new Ui::Tests)
 {
     ui->setupUi(this);
+    setQuestion();
     connect(ui->nextQuestBut, SIGNAL(clicked()), this, SLOT(setQuestion()));
 }
 
@@ -22,9 +23,13 @@ Ui::Tests* Tests::getUi(){
 }
 
 void Tests::setQuestion(){
-    if(currentQuestion < 31){
+    if(currentQuestion < 29){
         ++currentQuestion;
         ui->progressBar->setValue(currentQuestion);
+    }
+    else{
+        emit testEnd();
+        return;
     }
     //Changing buttons theme to "base"
     ui->firstAnsw->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.884615, y2:0.892, stop:0 rgba(85, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 85, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
