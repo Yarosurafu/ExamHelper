@@ -79,3 +79,12 @@ QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
     //----------------------------------------
     return questions;
 }
+
+//TODO: finish method. Now it's just buffer
+QJsonArray DataBase::getTestVariant(){
+    QJsonObject subject = subjects_m[0].toObject();
+    QJsonArray allQuestions = subject["questions"].toArray();
+    for(int i = 0; i < 10; ++i)
+        allQuestions.push_back(allQuestions[i]);
+    return allQuestions;
+}
