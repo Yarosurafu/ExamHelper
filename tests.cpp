@@ -17,9 +17,15 @@ Tests::~Tests()
     delete ui;
 }
 
+Ui::Tests* Tests::getUi(){
+    return ui;
+}
+
 void Tests::setQuestion(){
-    if(currentQuestion != 30)
+    if(currentQuestion < 31){
         ++currentQuestion;
+        ui->progressBar->setValue(currentQuestion);
+    }
     //Changing buttons theme to "base"
     ui->firstAnsw->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.884615, y2:0.892, stop:0 rgba(85, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 85, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
     ui->secondAnsw->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.884615, y2:0.892, stop:0 rgba(85, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 85, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
