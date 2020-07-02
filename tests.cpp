@@ -16,7 +16,6 @@ Tests::Tests(const QJsonArray questions, Statistics* statWindwow, QWidget *paren
 
 Tests::~Tests()
 {
-    delete statWindow;
     delete ui;
 }
 
