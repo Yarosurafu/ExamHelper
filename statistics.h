@@ -14,13 +14,15 @@ class Statistics : public QWidget
     Q_OBJECT
 
 public:
-    explicit Statistics(int correctAnswQuantity, QWidget *parent = nullptr);
+    explicit Statistics(QWidget *parent = nullptr);
+    void setData(const int correctAnswers);
     ~Statistics();
 
 private:
     Ui::Statistics *ui;
     QGraphicsScene *scene;
-    QGraphicsEllipseItem *ellipse;
+    QGraphicsEllipseItem *ellipse = nullptr;
+    QGraphicsEllipseItem *center = nullptr;
 };
 
 #endif // STATISTICS_H
