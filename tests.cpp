@@ -3,9 +3,10 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-Tests::Tests(const QJsonArray questions, QWidget *parent) :
+Tests::Tests(const QJsonArray questions, Statistics* statWindwow, QWidget *parent) :
     QWidget(parent),
-    questions(questions),
+    questions(questions),    
+    statWindow(statWindwow),
     ui(new Ui::Tests)
 {
     ui->setupUi(this);
@@ -15,11 +16,8 @@ Tests::Tests(const QJsonArray questions, QWidget *parent) :
 
 Tests::~Tests()
 {
+    delete statWindow;
     delete ui;
-}
-
-Ui::Tests* Tests::getUi(){
-    return ui;
 }
 
 void Tests::setQuestion(){
@@ -28,6 +26,7 @@ void Tests::setQuestion(){
         ui->progressBar->setValue(currentQuestion);
     }
     else{
+        statWindow->setData(correctQuestions);
         emit testEnd();
         return;
     }
@@ -46,6 +45,6 @@ void Tests::setQuestion(){
     ui->thirdAnsw->setText(answers[2].toString());
     ui->fourthAnsw->setText(answers[3].toString());
     ui->fifthAnsw->setText(answers[4].toString());
-    if(currentQuestion == 30)
+    if(currentQuestion == 29)
         ui->nextQuestBut->setText("Завершить тест");
 }
