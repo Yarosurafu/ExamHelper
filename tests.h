@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QPushButton>
 #include "statistics.h"
 
 namespace Ui {
@@ -20,12 +21,16 @@ public:
 
 private:
     QJsonArray questions;
-    int currentQuestion = 0;
-    int correctQuestions = 26;
+    int currentQuestion = -1;
+    int correctAnswers = 0;
     Statistics* statWindow;
     Ui::Tests *ui;
+    QPushButton *answerButtons[5];
+    bool isAnswered = false;
+    bool checkButtons();
 private slots:
     void setQuestion();
+    void checkAnswer();
 signals:
     void testEnd();
 };
