@@ -105,15 +105,17 @@ void MainWindow::setSearchedQuestion(){
 void MainWindow::on_startTest_clicked()
 {
     //TODO: check this pointer
-    Tests *testWindow = new Tests(db_m.getTestVariant(), this);
-    connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(closeActiveSubWindow()));
-    connect(testWindow, SIGNAL(testEnd()), this, SLOT(setSubWindow(new Statistics(15, this), "Результаты")));
+    ui->mdiArea->closeAllSubWindows();
+    Statistics *statWindow = new Statistics(this);
+    Tests *testWindow = new Tests(db_m.getTestVariant(), statWindow, this);
+    connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(activateNextSubWindow()));
+    setSubWindow(statWindow, "Результаты");
     setSubWindow(testWindow, "Тест");
 }
 
 void MainWindow::setSubWindow(QWidget *widget, QString title){
     auto window = ui->mdiArea->addSubWindow(widget);
-    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowSystemMenuHint);
+    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
     window->setWindowTitle(title);
     window->showMaximized();
 }
