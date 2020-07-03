@@ -26,7 +26,8 @@ private:
     Statistics* statWindow;
     Ui::Tests *ui;
     QPushButton *answerButtons[5];
-    bool isAnswered = false;
+    QString currCorrectAnsw;
+    bool isAnswered = true;
     bool checkButtons();
 private slots:
     void setQuestion();
