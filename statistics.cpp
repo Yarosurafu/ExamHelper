@@ -44,3 +44,13 @@ Statistics::~Statistics()
     delete scene;
     delete ui;
 }
+
+void Statistics::on_closeButton_clicked()
+{
+    emit closeAll();
+}
+
+void Statistics::on_repeatButton_clicked()
+{
+    emit repeat();
+}
