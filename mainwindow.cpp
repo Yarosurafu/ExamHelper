@@ -13,6 +13,7 @@
 #include <QJsonObject>
 #include <QMessageBox>
 #include <QMdiSubWindow>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,21 +34,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_parseButt_clicked()
 {
-    ParsingProgress progress(this);
     QString dirName = ui->directoryLine->text();
     ui->directoryLine->clear();
     QDir directory(dirName);
     QFileInfoList files = directory.entryInfoList();
-    progress.setProgressMin(0);
-    progress.setProgressMax(files.size());
-    progress.show();
     for(int i = 0; i < files.size(); ++i){
-        progress.setProgress(i);
-        if(files[i].absoluteFilePath().contains(".html"))
+        if(files[i].absoluteFilePath().contains(".html")){
+            ui->debugWindow->append(files[i].absoluteFilePath());
             ParsingDB::parse(files[i].absoluteFilePath());
+        }
     }
-    progress.hide();
-    progress.resetProgress();
+    QMessageBox::information(this, "Анализ веб-страниц", "Анализ завершен");
 }
 
 void MainWindow::on_pickFileButt_clicked()
