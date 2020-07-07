@@ -4,6 +4,7 @@
 #include "parsingprogress.h"
 #include "database.h"
 #include "tests.h"
+#include "statistics.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -12,6 +13,7 @@
 #include <QJsonObject>
 #include <QMessageBox>
 #include <QMdiSubWindow>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,21 +34,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_parseButt_clicked()
 {
-    ParsingProgress progress(this);
     QString dirName = ui->directoryLine->text();
     ui->directoryLine->clear();
     QDir directory(dirName);
     QFileInfoList files = directory.entryInfoList();
-    progress.setProgressMin(0);
-    progress.setProgressMax(files.size());
-    progress.show();
     for(int i = 0; i < files.size(); ++i){
-        progress.setProgress(i);
-        if(files[i].absoluteFilePath().contains(".html"))
+        if(files[i].absoluteFilePath().contains(".html")){
+            ui->debugWindow->append(files[i].absoluteFilePath());
             ParsingDB::parse(files[i].absoluteFilePath());
+        }
     }
-    progress.hide();
-    progress.resetProgress();
+    QMessageBox::information(this, "Анализ веб-страниц", "Анализ завершен");
 }
 
 void MainWindow::on_pickFileButt_clicked()
@@ -103,11 +101,21 @@ void MainWindow::setSearchedQuestion(){
 
 void MainWindow::on_startTest_clicked()
 {
-    setSubWindow(new Tests(this));
+    ui->mdiArea->closeAllSubWindows();
+    QString selectedMatter = ui->mattersList->currentItem()->text();
+    Statistics *statWindow = new Statistics(this);
+    Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter), statWindow, this);
+    connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(activateNextSubWindow()));
+    connect(statWindow, SIGNAL(closeAll()), ui->mdiArea, SLOT(closeAllSubWindows()));
+    connect(statWindow, SIGNAL(repeat()), ui->mdiArea, SLOT(closeAllSubWindows()));
+    connect(statWindow, SIGNAL(repeat()), this, SLOT(on_startTest_clicked()));
+    setSubWindow(statWindow, "Результаты");
+    setSubWindow(testWindow, "Тест");
 }
 
-void MainWindow::setSubWindow(QWidget *widget){
+void MainWindow::setSubWindow(QWidget *widget, QString title){
     auto window = ui->mdiArea->addSubWindow(widget);
-    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowSystemMenuHint);
+    window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
+    window->setWindowTitle(title);
     window->showMaximized();
 }

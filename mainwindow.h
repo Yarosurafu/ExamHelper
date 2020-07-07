@@ -29,13 +29,15 @@ private slots:
 
     void on_startTest_clicked();
 
+public slots:
+
+    void setSubWindow(QWidget* widget, QString title);
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
     QJsonArray searchedQuestions_m;
     int currentQuestionInd;
-
     void setSearchedQuestion();
-    void setSubWindow(QWidget* widget);
 };
 #endif // MAINWINDOW_H

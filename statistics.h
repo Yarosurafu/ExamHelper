@@ -1,7 +1,9 @@
-#ifndef STATISTICS_H
+﻿#ifndef STATISTICS_H
 #define STATISTICS_H
 
 #include <QWidget>
+#include <QGraphicsScene>
+#include <QGraphicsEllipseItem>
 
 namespace Ui {
 class Statistics;
@@ -13,10 +15,20 @@ class Statistics : public QWidget
 
 public:
     explicit Statistics(QWidget *parent = nullptr);
+    void setData(const int correctAnswers);
     ~Statistics();
 
 private:
     Ui::Statistics *ui;
+    QGraphicsScene *scene;
+    QGraphicsEllipseItem *ellipse = nullptr;
+    QGraphicsEllipseItem *center = nullptr;
+signals:
+    void closeAll();
+    void repeat();
+private slots:
+    void on_closeButton_clicked();
+    void on_repeatButton_clicked();
 };
 
 #endif // STATISTICS_H
