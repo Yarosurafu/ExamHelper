@@ -101,11 +101,14 @@ void MainWindow::setSearchedQuestion(){
 
 void MainWindow::on_startTest_clicked()
 {
-    //TODO: check this pointer
     ui->mdiArea->closeAllSubWindows();
+    QString selectedMatter = ui->mattersList->currentItem()->text();
     Statistics *statWindow = new Statistics(this);
-    Tests *testWindow = new Tests(db_m.getTestVariant(), statWindow, this);
+    Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter), statWindow, this);
     connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(activateNextSubWindow()));
+    connect(statWindow, SIGNAL(closeAll()), ui->mdiArea, SLOT(closeAllSubWindows()));
+    connect(statWindow, SIGNAL(repeat()), ui->mdiArea, SLOT(closeAllSubWindows()));
+    connect(statWindow, SIGNAL(repeat()), this, SLOT(on_startTest_clicked()));
     setSubWindow(statWindow, "Результаты");
     setSubWindow(testWindow, "Тест");
 }
