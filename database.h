@@ -15,7 +15,7 @@ public:
         return subjectsNames_m;
     }
     QJsonArray searchQuestion(const QString matter, const QString key);
-    QJsonArray getTestVariant();
+    QJsonArray getTestVariant(const QString matter);
 };
 
 #endif // DATABASE_H
