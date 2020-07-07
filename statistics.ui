@@ -40,54 +40,21 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label">
-     <property name="font">
-      <font>
-       <family>Times New Roman</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Правильные ответы</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLabel" name="label_2">
-     <property name="font">
-      <font>
-       <family>Times New Roman</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Неправильные ответы</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QGraphicsView" name="statView"/>
-   </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton">
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="incorrectQuant">
      <property name="styleSheet">
-      <string notr="true">QPushButton{	
-	color: black;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
-	border: 2px solid rgb(0, 0, 255);
-	padding: 6px;
-	border-radius: 20px 10px;
-}
-
-QPushButton:pressed{
-	color: red;
-	border: 4px solid red;
-	border-radius: 20px 10px;
+      <string notr="true">QLineEdit{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 93, 93);
+	border: 2px solid rgb(170, 0, 0);
+	font: 12pt &quot;Times New Roman&quot;;
 }</string>
      </property>
      <property name="text">
-      <string>Повторить</string>
+      <string>0</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -109,21 +76,76 @@ QPushButton:pressed{
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="incorrectQuant">
+   <item row="2" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <family>Times New Roman</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Неправильные ответы</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QGraphicsView" name="statView"/>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QPushButton" name="repeatButton">
      <property name="styleSheet">
-      <string notr="true">QLineEdit{
-	color: rgb(0, 0, 0);
-	background-color: rgb(255, 93, 93);
-	border: 2px solid rgb(170, 0, 0);
-	font: 12pt &quot;Times New Roman&quot;;
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
 }</string>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>Повторить</string>
      </property>
-     <property name="readOnly">
-      <bool>true</bool>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Times New Roman</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Правильные ответы</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QPushButton" name="closeButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Закрыть</string>
      </property>
     </widget>
    </item>
