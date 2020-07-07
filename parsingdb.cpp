@@ -75,9 +75,9 @@ void ParsingDB::parse(const QString path){
                 question.remove("</b>");
                 question.remove("<ul>");
                 if(question.contains("</h4>")) question.remove("</h4>");
-                QString buff = question.chopped((question.size() - 14));
-                question.remove(buff);
-                if(question.at(0) == ' ') question.remove(0, 1);
+                /*QString buff = question.chopped((question.size() - 12));
+                question.remove(buff);*/
+                while(question[0] == " ") question.remove(0, 1);
                 //--------------------------
 
                 //------Getting answers-----
