@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QApplication>
 #include <QJsonObject>
+#include <random>
 
 DataBase::DataBase()
 {
@@ -81,10 +82,20 @@ QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
 }
 
 //TODO: finish method. Now it's just buffer
-QJsonArray DataBase::getTestVariant(){
-    QJsonObject subject = subjects_m[0].toObject();
+QJsonArray DataBase::getTestVariant(const QString matter){
+    QJsonObject subject;
+    for(int i = 0; i < subjects_m.size(); ++i){
+        subject = subjects_m[i].toObject();
+        if(subject["subject"].toString() == matter)
+            break;
+    }
     QJsonArray allQuestions = subject["questions"].toArray();
-    for(int i = 0; i < 10; ++i)
-        allQuestions.push_back(allQuestions[i]);
-    return allQuestions;
+    QJsonArray variant;
+    std::random_device rd;
+    std::mt19937 mersenne(rd());
+    std::uniform_int_distribution<> distrib(0, allQuestions.size() - 1);
+    for(int i = 0; i < 30; ++i){
+        variant.push_back(allQuestions[distrib(mersenne)]);
+    }
+    return variant;
 }
