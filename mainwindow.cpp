@@ -102,6 +102,10 @@ void MainWindow::setSearchedQuestion(){
 void MainWindow::on_startTest_clicked()
 {
     ui->mdiArea->closeAllSubWindows();
+    if(ui->mattersList->currentItem() == nullptr){
+        QMessageBox::critical(this, "Ошибка", "Тему теста не выбрано");
+        return;
+    }
     QString selectedMatter = ui->mattersList->currentItem()->text();
     Statistics *statWindow = new Statistics(this);
     Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter), statWindow, this);
