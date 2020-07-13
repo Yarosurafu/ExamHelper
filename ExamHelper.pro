@@ -19,6 +19,7 @@ SOURCES += \
     database.cpp \
     main.cpp \
     mainwindow.cpp \
+    nfcreator.cpp \
     parsingdb.cpp \
     parsingprogress.cpp \
     statistics.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     database.h \
     mainwindow.h \
+    nfcreator.h \
     parsingdb.h \
     parsingprogress.h \
     statistics.h \
@@ -34,6 +36,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
+    nfcreator.ui \
     parsingprogress.ui \
     statistics.ui \
     tests.ui
