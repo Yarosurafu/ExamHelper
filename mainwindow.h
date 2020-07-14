@@ -29,8 +29,6 @@ private slots:
 
     void on_startTest_clicked();
 
-public slots:
-
     void setSubWindow(QWidget* widget, QString title);
 
 private:
