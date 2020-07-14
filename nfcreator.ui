@@ -18,7 +18,7 @@
     <widget class="QTimeEdit" name="timeEdit"/>
    </item>
    <item row="2" column="2">
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="threeDaysNotif">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -35,7 +35,7 @@ QPushButton:pressed{
 }</string>
      </property>
      <property name="text">
-      <string>Неделя</string>
+      <string>Три дня</string>
      </property>
     </widget>
    </item>
@@ -47,7 +47,29 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="twelveHNotif">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>12 часов</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="oneDayNotif">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -68,33 +90,11 @@ QPushButton:pressed{
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="styleSheet">
-      <string notr="true">QPushButton{	
-	color: black;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
-	border: 2px solid rgb(0, 0, 255);
-	padding: 6px;
-	border-radius: 20px 10px;
-}
-
-QPushButton:pressed{
-	color: red;
-	border: 4px solid red;
-	border-radius: 20px 10px;
-}</string>
-     </property>
-     <property name="text">
-      <string>3 дня</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0" colspan="3">
-    <widget class="QCalendarWidget" name="calendarWidget"/>
+    <widget class="QCalendarWidget" name="calendar"/>
    </item>
    <item row="3" column="1" colspan="2">
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="createNotifBut">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
@@ -120,7 +120,7 @@ QPushButton:pressed{
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="cancelBut">
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
