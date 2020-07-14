@@ -19,6 +19,21 @@
    </item>
    <item row="2" column="2">
     <widget class="QPushButton" name="pushButton_3">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
       <string>Неделя</string>
      </property>
@@ -33,6 +48,21 @@
    </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="pushButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
       <string>День</string>
      </property>
@@ -40,6 +70,21 @@
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="pushButton_2">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
       <string>3 дня</string>
      </property>
@@ -50,13 +95,60 @@
    </item>
    <item row="3" column="1" colspan="2">
     <widget class="QPushButton" name="pushButton_4">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
      <property name="text">
       <string>Создать уведомление</string>
+     </property>
+     <property name="icon">
+      <iconset resource="rsrc.qrc">
+       <normaloff>:/icons/images/ok.png</normaloff>:/icons/images/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{	
+	color: black;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	border: 2px solid rgb(0, 0, 255);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Отменить</string>
+     </property>
+     <property name="icon">
+      <iconset resource="rsrc.qrc">
+       <normaloff>:/icons/images/cancel.png</normaloff>:/icons/images/cancel.png</iconset>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>
