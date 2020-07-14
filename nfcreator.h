@@ -1,4 +1,4 @@
-#ifndef NFCREATOR_H
+﻿#ifndef NFCREATOR_H
 #define NFCREATOR_H
 
 #include <QWidget>
@@ -15,8 +15,13 @@ public:
     explicit NfCreator(QWidget *parent = nullptr);
     ~NfCreator();
 
+private slots:
+    void on_pushButton_5_clicked();
+    void setQuestion(QString question);
+
 private:
     Ui::NfCreator *ui;
+    QString question = "";
 };
 
 #endif // NFCREATOR_H
