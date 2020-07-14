@@ -1,5 +1,6 @@
 ﻿#include "tests.h"
 #include "ui_tests.h"
+#include "nfcreator.h"
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QMessageBox>
@@ -83,4 +84,10 @@ void Tests::checkAnswer(){
                 answerButtons[i]->setStyleSheet("QPushButton{	\n	color: rgb(0, 85, 0);\n	background-color: rgb(85, 255, 127);\n	border: 4px solid rgb(0, 170, 0);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
         isAnswered = true;
     }
+}
+
+void Tests::on_setReminderBut_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    emit notification(question["question"].toString());
 }
