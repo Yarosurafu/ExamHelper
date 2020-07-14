@@ -16,12 +16,21 @@ public:
     ~NfCreator();
 
 private slots:
-    void on_pushButton_5_clicked();
+    void on_cancelBut_clicked();
+
+    void on_createNotifBut_clicked();
+
+public slots:
     void setQuestion(QString question);
+
+signals:
+    void exit();
 
 private:
     Ui::NfCreator *ui;
-    QString question = "";
+    QString m_question = "";
+    QString m_date = "";
+    void writeToJson();
 };
 
 #endif // NFCREATOR_H
