@@ -1,4 +1,4 @@
-#include "nfcreator.h"
+﻿#include "nfcreator.h"
 #include "ui_nfcreator.h"
 
 NfCreator::NfCreator(QWidget *parent) :
@@ -11,4 +11,13 @@ NfCreator::NfCreator(QWidget *parent) :
 NfCreator::~NfCreator()
 {
     delete ui;
+}
+
+void NfCreator::setQuestion(QString questionArg){
+    question = questionArg;
+}
+
+void NfCreator::on_pushButton_5_clicked()
+{
+    this->close();
 }
