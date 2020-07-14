@@ -110,14 +110,17 @@ void MainWindow::on_startTest_clicked()
     NfCreator *notif = new NfCreator(this);
     Statistics *statWindow = new Statistics(this);
     Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter), statWindow, this);
-    connect(testWindow, SIGNAL(testEnd()), ui->mdiArea, SLOT(activateNextSubWindow()));
-    connect(testWindow, SIGNAL(notification(question)), ui->mdiArea, SLOT(activateNextSubWindow()));
-    connect(statWindow, SIGNAL(closeAll()), ui->mdiArea, SLOT(closeAllSubWindows()));
-    connect(statWindow, SIGNAL(repeat()), ui->mdiArea, SLOT(closeAllSubWindows()));
-    connect(statWindow, SIGNAL(repeat()), this, SLOT(on_startTest_clicked()));
+
     setSubWindow(notif, "Создать уведомление");
     setSubWindow(statWindow, "Результаты");
     setSubWindow(testWindow, "Тест");
+    connect(notif, &NfCreator::exit, ui->mdiArea, &QMdiArea::activatePreviousSubWindow);
+    connect(testWindow, &Tests::testEnd, ui->mdiArea, &QMdiArea::activatePreviousSubWindow);
+    connect(testWindow, &Tests::notification, ui->mdiArea, &QMdiArea::activateNextSubWindow);
+    connect(testWindow, &Tests::notification, notif, &NfCreator::setQuestion);
+    connect(statWindow, &Statistics::closeAll, ui->mdiArea, &QMdiArea::closeAllSubWindows);
+    connect(statWindow, &Statistics::repeat, ui->mdiArea, &QMdiArea::closeAllSubWindows);
+    connect(statWindow, &Statistics::repeat, this, &MainWindow::on_startTest_clicked);
 }
 
 void MainWindow::setSubWindow(QWidget *widget, QString title){
