@@ -13,4 +13,7 @@
     <qresource prefix="/database">
         <file>database/test.json</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>sound/piece-of-cake.mp3</file>
+    </qresource>
 </RCC>
