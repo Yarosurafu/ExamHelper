@@ -20,7 +20,7 @@ NfCreator::~NfCreator()
     delete ui;
 }
 
-void NfCreator::setQuestion(QString questionArg){
+void NfCreator::setQuestion(QJsonObject questionArg){
     m_question = questionArg;
     qDebug() << m_question << "\n";
 }
@@ -36,15 +36,17 @@ void NfCreator::on_createNotifBut_clicked()
     int year = chosenDate.year();
     int month = chosenDate.month();
     int day = chosenDate.day();
-    m_date = "/sd " + QString::number(day) + "/" + QString::number(month) + "/"
-            + QString::number(year) + " /st " + ui->timeEdit->text() + " /st once";
+    QString time = ui->timeEdit->text().replace(":", "-");
+    m_date = "/tn exam-" + QString::number(day) + "-"
+            + QString::number(month) + "-" + QString::number(year) + "-"
+            + time;
     writeToJson();
     emit exit();
 }
 
 void NfCreator::writeToJson(){
+    //----------Opening file----------
     QString path = QApplication::applicationDirPath()+ "/database/notifications.json";
-    qDebug() << path;
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly)){
         qWarning("Cannot open JSON-file");
@@ -55,10 +57,32 @@ void NfCreator::writeToJson(){
     QJsonDocument document(QJsonDocument::fromJson(data));
     QJsonObject database = document.object();
     QJsonArray notifications = database["notifications"].toArray();
+    //--------------------------------
+
+    //--Picking date and question with answers--
+    QDate chosenDate = ui->calendar->selectedDate();
+    int year = chosenDate.year();
+    int month = chosenDate.month();
+    int day = chosenDate.day();
+    QString dayS = QString::number(day);
+    QString monthS = QString::number(month);
+    QString timeS = ui->timeEdit->text();
+    if(dayS.length() == 1)
+        dayS = "0" + dayS;
+    if(monthS.length() == 1)
+        monthS = "0" + monthS;
+    if(timeS.length() == 4)
+        timeS = "0" + timeS;
+    //--------------------------------
 
     QJsonObject newNotif = {
-      {"date", m_date},
-      {"question", m_question}
+        {"name", m_date},
+        {"question", m_question["question"].toString()},
+        {"answers", m_question["answers"].toArray()},
+        {"day", dayS},
+        {"month", monthS},
+        {"year", QString::number(year)},
+        {"time", timeS}
     };
 
     notifications.append(newNotif);
@@ -70,4 +94,11 @@ void NfCreator::writeToJson(){
     }
     saveFile.write(QJsonDocument(database).toJson());
     saveFile.close();
+    m_date += " /tr \"" + QApplication::applicationDirPath() + "/ExamHelper" + "\" /sd " + dayS + "/" + monthS + "/"
+            + QString::number(year) + " /st " + timeS + " /sc once";
+    QString command = "schtasks /create " + m_date;
+    QByteArray ba = command.toLatin1();
+    const char *c_str = ba.data();
+    //system(c_str);
+    delete c_str;
 }
