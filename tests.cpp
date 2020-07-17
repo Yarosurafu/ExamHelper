@@ -89,5 +89,5 @@ void Tests::checkAnswer(){
 void Tests::on_setReminderBut_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
-    emit notification(question["question"].toString());
+    emit notification(question);
 }
