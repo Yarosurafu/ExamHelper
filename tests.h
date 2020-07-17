@@ -36,7 +36,7 @@ private slots:
 
 signals:
     void testEnd();
-    void notification(QString question);
+    void notification(QJsonObject question);
 };
 
 #endif // TESTS_H
