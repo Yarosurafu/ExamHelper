@@ -2,6 +2,7 @@
 #define NFCREATOR_H
 
 #include <QWidget>
+#include <QJsonObject>
 
 namespace Ui {
 class NfCreator;
@@ -21,14 +22,14 @@ private slots:
     void on_createNotifBut_clicked();
 
 public slots:
-    void setQuestion(QString question);
+    void setQuestion(QJsonObject question);
 
 signals:
     void exit();
 
 private:
     Ui::NfCreator *ui;
-    QString m_question = "";
+    QJsonObject m_question;
     QString m_date = "";
     void writeToJson();
 };
