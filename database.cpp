@@ -91,8 +91,7 @@ QJsonArray DataBase::getTestVariant(const QString matter){
     }
     QJsonArray allQuestions = subject["questions"].toArray();
     QJsonArray variant;
-    std::random_device rd;
-    std::mt19937 mersenne(rd());
+    std::mt19937 mersenne(time(0));
     std::uniform_int_distribution<> distrib(0, allQuestions.size() - 1);
     for(int i = 0; i < 30; ++i){
         variant.push_back(allQuestions[distrib(mersenne)]);
