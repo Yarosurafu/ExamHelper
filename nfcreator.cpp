@@ -94,11 +94,12 @@ void NfCreator::writeToJson(){
     }
     saveFile.write(QJsonDocument(database).toJson());
     saveFile.close();
-    m_date += " /tr \"" + QApplication::applicationDirPath() + "/ExamHelper" + "\" /sd " + dayS + "/" + monthS + "/"
+    m_date += " /tr \"" + QApplication::applicationDirPath() + "/NotificationHelper" + "\" /sd " + dayS + "/" + monthS + "/"
             + QString::number(year) + " /st " + timeS + " /sc once";
     QString command = "schtasks /create " + m_date;
+    QMessageBox::about(this, "Debug", command);
     QByteArray ba = command.toLatin1();
     const char *c_str = ba.data();
-    //system(c_str);
+    system(c_str);
     delete c_str;
 }
