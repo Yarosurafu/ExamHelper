@@ -16,7 +16,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ExamHelper</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="rsrc.qrc">
+    <normaloff>:/icons/images/note.png</normaloff>:/icons/images/note.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -450,7 +454,7 @@ QPushButton:pressed{
 }</string>
              </property>
              <property name="text">
-              <string>Parse!</string>
+              <string>Начать анализ</string>
              </property>
             </widget>
            </item>
@@ -499,7 +503,7 @@ QPushButton:pressed{
 }</string>
              </property>
              <property name="text">
-              <string>Pick directory</string>
+              <string>Выбор папки</string>
              </property>
             </widget>
            </item>
@@ -535,6 +539,8 @@ QPushButton:pressed{
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>
