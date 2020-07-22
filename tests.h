@@ -34,6 +34,16 @@ private slots:
     void checkAnswer();
     void on_setReminderBut_clicked();
 
+    void on_more_1_clicked();
+
+    void on_more_2_clicked();
+
+    void on_more_3_clicked();
+
+    void on_more_4_clicked();
+
+    void on_more_5_clicked();
+
 signals:
     void testEnd();
     void notification(QJsonObject question);

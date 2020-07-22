@@ -57,9 +57,15 @@ void Tests::setQuestion(){
     QJsonArray answers = question["answers"].toArray();
     //TODO: DELETE THE '*'!!!
     for(int i = 0; i < answers.size(); ++i){
-        answerButtons[i]->setText(answers[i].toString());
+        QString answer = answers[i].toString();
+        if(answer.size() > 38){
+            answer = answer.remove(35, answer.size() - 1) + "...";
+            answerButtons[i]->setText(answer);
+        }
+        else
+            answerButtons[i]->setText(answer);
         if(answers[i].toString().contains("*"))
-            currCorrectAnsw = answers[i].toString();
+            currCorrectAnsw = answer;
     }
     if(currentQuestion == 29)
         ui->nextQuestBut->setText("Завершить тест");
@@ -90,4 +96,39 @@ void Tests::on_setReminderBut_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     emit notification(question);
+}
+
+void Tests::on_more_1_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    QJsonArray answers = question["answers"].toArray();
+    QMessageBox::about(this, "Ответ", answers[0].toString());
+}
+
+void Tests::on_more_2_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    QJsonArray answers = question["answers"].toArray();
+    QMessageBox::about(this, "Ответ", answers[1].toString());
+}
+
+void Tests::on_more_3_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    QJsonArray answers = question["answers"].toArray();
+    QMessageBox::about(this, "Ответ", answers[2].toString());
+}
+
+void Tests::on_more_4_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    QJsonArray answers = question["answers"].toArray();
+    QMessageBox::about(this, "Ответ", answers[3].toString());
+}
+
+void Tests::on_more_5_clicked()
+{
+    QJsonObject question = questions[currentQuestion].toObject();
+    QJsonArray answers = question["answers"].toArray();
+    QMessageBox::about(this, "Ответ", answers[4].toString());
 }
