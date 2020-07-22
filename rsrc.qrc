@@ -6,9 +6,14 @@
         <file>images/arrowPrevPressed.png</file>
         <file>images/arrowDown.png</file>
         <file>images/reminder.png</file>
+        <file>images/cancel.png</file>
+        <file>images/restart.png</file>
+        <file>images/ok.png</file>
     </qresource>
     <qresource prefix="/database">
         <file>database/test.json</file>
-        <file>database/data.json</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>sound/piece-of-cake.mp3</file>
     </qresource>
 </RCC>

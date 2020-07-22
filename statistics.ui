@@ -112,6 +112,10 @@ QPushButton:pressed{
      <property name="text">
       <string>Повторить</string>
      </property>
+     <property name="icon">
+      <iconset resource="rsrc.qrc">
+       <normaloff>:/icons/images/restart.png</normaloff>:/icons/images/restart.png</iconset>
+     </property>
     </widget>
    </item>
    <item row="2" column="0">
@@ -147,10 +151,16 @@ QPushButton:pressed{
      <property name="text">
       <string>Закрыть</string>
      </property>
+     <property name="icon">
+      <iconset resource="rsrc.qrc">
+       <normaloff>:/icons/images/cancel.png</normaloff>:/icons/images/cancel.png</iconset>
+     </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

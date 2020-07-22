@@ -32,8 +32,11 @@ private:
 private slots:
     void setQuestion();
     void checkAnswer();
+    void on_setReminderBut_clicked();
+
 signals:
     void testEnd();
+    void notification(QJsonObject question);
 };
 
 #endif // TESTS_H
