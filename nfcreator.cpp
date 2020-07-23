@@ -13,6 +13,9 @@ NfCreator::NfCreator(QWidget *parent) :
     ui(new Ui::NfCreator)
 {
     ui->setupUi(this);
+    ui->twelveHNotif->setCheckable(true);
+    ui->oneDayNotif->setCheckable(true);
+    ui->threeDaysNotif->setCheckable(true);
 }
 
 NfCreator::~NfCreator()
@@ -102,4 +105,8 @@ void NfCreator::writeToJson(){
     const char *c_str = ba.data();
     system(c_str);
     delete c_str;
+}
+
+void NfCreator::on_twelveHNotif_clicked()
+{
 }
