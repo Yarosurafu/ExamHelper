@@ -108,6 +108,9 @@ QTabBar::tab:selected {
             <pointsize>8</pointsize>
            </font>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
            <string notr="true">QPushButton{	
 	color: rgb(4, 232, 236);
