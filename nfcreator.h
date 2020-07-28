@@ -21,6 +21,8 @@ private slots:
 
     void on_createNotifBut_clicked();
 
+    void on_hours_clicked();
+
 public slots:
     void setQuestion(QJsonObject question);
 
