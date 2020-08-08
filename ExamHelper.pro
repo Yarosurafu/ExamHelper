@@ -20,6 +20,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     nfcreator.cpp \
+    notification.cpp \
     parsingdb.cpp \
     parsingprogress.cpp \
     statistics.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     database.h \
     mainwindow.h \
     nfcreator.h \
+    notification.h \
     parsingdb.h \
     parsingprogress.h \
     statistics.h \
