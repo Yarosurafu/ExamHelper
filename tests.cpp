@@ -37,12 +37,19 @@ void Tests::setQuestion(){
         QMessageBox::critical(this, "Ошибка", "Ответ не был выбран");
         return;
     }
+    emit answer(static_cast<int>(Results::CHANGE_RESULT));
     if(currentQuestion < 29){
         ++currentQuestion;
         ui->progressBar->setValue(currentQuestion);
     }
     else{
         statWindow->setData(correctAnswers);
+        if(correctAnswers == 30)
+            emit answer(static_cast<int>(Results::PERFECT_RESULT));
+        else if(correctAnswers >= 20)
+            emit answer(static_cast<int>(Results::PASSED_RESULT));
+        else
+            emit answer(static_cast<int>(Results::FAILED_RESULT));
         emit testEnd();
         return;
     }
@@ -55,17 +62,23 @@ void Tests::setQuestion(){
     QJsonObject question = questions[currentQuestion].toObject();
     ui->questionText->setText(question["question"].toString());
     QJsonArray answers = question["answers"].toArray();
-    //TODO: DELETE THE '*'!!!
+    //TODO: DELETE THE '*'!!! +++
     for(int i = 0; i < answers.size(); ++i){
         QString answer = answers[i].toString();
+        if(answer.contains("*")){
+            while(answer.contains("*"))
+                answer.chop(1);
+            if(answer.size() > 38){
+                answer = answer.remove(35, answer.size() - 1) + "...";
+            }
+            currCorrectAnsw = answer;
+        }
         if(answer.size() > 38){
             answer = answer.remove(35, answer.size() - 1) + "...";
             answerButtons[i]->setText(answer);
         }
         else
             answerButtons[i]->setText(answer);
-        if(answers[i].toString().contains("*"))
-            currCorrectAnsw = answer;
     }
     if(currentQuestion == 29)
         ui->nextQuestBut->setText("Завершить тест");
@@ -81,6 +94,7 @@ void Tests::checkAnswer(){
         userAnswButt->setStyleSheet("QPushButton{	\n	color: rgb(0, 85, 0);\n	background-color: rgb(85, 255, 127);\n	border: 4px solid rgb(0, 170, 0);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
         ++correctAnswers;
         isAnswered = true;
+        emit answer(static_cast<int>(Results::CORRECT_RESULT));
         return;
     }
     else{
@@ -89,6 +103,7 @@ void Tests::checkAnswer(){
             if(answerButtons[i]->text() == currCorrectAnsw)
                 answerButtons[i]->setStyleSheet("QPushButton{	\n	color: rgb(0, 85, 0);\n	background-color: rgb(85, 255, 127);\n	border: 4px solid rgb(0, 170, 0);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
         isAnswered = true;
+        emit answer(static_cast<int>(Results::WRONG_RESULT));
     }
 }
 
@@ -102,33 +117,48 @@ void Tests::on_more_1_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     QJsonArray answers = question["answers"].toArray();
-    QMessageBox::about(this, "Ответ", answers[0].toString());
+    QString currAnswer = answers[0].toString();
+    while(currAnswer.contains("*"))
+        currAnswer.chop(1);
+    QMessageBox::about(this, "Ответ", currAnswer);
 }
 
 void Tests::on_more_2_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     QJsonArray answers = question["answers"].toArray();
-    QMessageBox::about(this, "Ответ", answers[1].toString());
+    QString currAnswer = answers[1].toString();
+    while(currAnswer.contains("*"))
+        currAnswer.chop(1);
+    QMessageBox::about(this, "Ответ", currAnswer);
 }
 
 void Tests::on_more_3_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     QJsonArray answers = question["answers"].toArray();
-    QMessageBox::about(this, "Ответ", answers[2].toString());
+    QString currAnswer = answers[2].toString();
+    while(currAnswer.contains("*"))
+        currAnswer.chop(1);
+    QMessageBox::about(this, "Ответ", currAnswer);
 }
 
 void Tests::on_more_4_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     QJsonArray answers = question["answers"].toArray();
-    QMessageBox::about(this, "Ответ", answers[3].toString());
+    QString currAnswer = answers[3].toString();
+    while(currAnswer.contains("*"))
+        currAnswer.chop(1);
+    QMessageBox::about(this, "Ответ", currAnswer);
 }
 
 void Tests::on_more_5_clicked()
 {
     QJsonObject question = questions[currentQuestion].toObject();
     QJsonArray answers = question["answers"].toArray();
-    QMessageBox::about(this, "Ответ", answers[4].toString());
+    QString currAnswer = answers[4].toString();
+    while(currAnswer.contains("*"))
+        currAnswer.chop(1);
+    QMessageBox::about(this, "Ответ", currAnswer);
 }
