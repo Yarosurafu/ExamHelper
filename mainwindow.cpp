@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QMdiSubWindow>
 #include <QDebug>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->matterComboBox->addItem(subjectsNames[i]);
         ui->mattersList->addItem(subjectsNames[i]);
     }
+    QPixmap image(":/icons/images/Basya-def.png");
+    ui->image->setPixmap(image);
 }
 
 MainWindow::~MainWindow()
@@ -39,9 +42,10 @@ void MainWindow::on_parseButt_clicked()
     QDir directory(dirName);
     QFileInfoList files = directory.entryInfoList();
     for(int i = 0; i < files.size(); ++i){
-        if(files[i].absoluteFilePath().contains(".html")){
-            ui->debugWindow->append(files[i].absoluteFilePath());
-            ParsingDB::parse(files[i].absoluteFilePath());
+        QString path = files[i].absoluteFilePath();
+        if(path.contains(".html")){
+            //QMessageBox::critical(this, "Debug", QString::number(i));
+            ParsingDB::parse(path);
         }
     }
     QMessageBox::information(this, "Анализ веб-страниц", "Анализ завершен");
@@ -118,9 +122,33 @@ void MainWindow::on_startTest_clicked()
     connect(testWindow, &Tests::testEnd, ui->mdiArea, &QMdiArea::activatePreviousSubWindow);
     connect(testWindow, &Tests::notification, ui->mdiArea, &QMdiArea::activateNextSubWindow);
     connect(testWindow, &Tests::notification, notif, &NfCreator::setQuestion);
+    connect(testWindow, &Tests::answer, this, &MainWindow::setBasya);
     connect(statWindow, &Statistics::closeAll, ui->mdiArea, &QMdiArea::closeAllSubWindows);
     connect(statWindow, &Statistics::repeat, ui->mdiArea, &QMdiArea::closeAllSubWindows);
     connect(statWindow, &Statistics::repeat, this, &MainWindow::on_startTest_clicked);
+}
+
+void MainWindow::setBasya(int emotion){
+    switch(emotion){
+        case (int)Tests::Results::CORRECT_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-pass.png"));
+        break;
+        case (int)Tests::Results::WRONG_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-wrong.png"));
+        break;
+        case (int)Tests::Results::CHANGE_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-wait.png"));
+        break;
+        case (int)Tests::Results::PERFECT_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-30end.png"));
+        break;
+        case (int)Tests::Results::PASSED_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-20end.png"));
+        break;
+        case (int)Tests::Results::FAILED_RESULT:
+            ui->image->setPixmap(QPixmap(":/icons/images/Basya-wrong.png"));
+        break;
+    }
 }
 
 void MainWindow::setSubWindow(QWidget *widget, QString title){
@@ -128,4 +156,23 @@ void MainWindow::setSubWindow(QWidget *widget, QString title){
     window->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
     window->setWindowTitle(title);
     window->showMaximized();
+}
+
+void MainWindow::on_startDownload_clicked()
+{
+    QString address = ui->address->text() + "/1";
+    ui->address->clear();
+    int  quantity = ui->quantity->text().toInt();
+    ui->quantity->clear();
+    for(int i = 1; i <= quantity; ++i){
+        while(address.at(address.size() - 1) != '/')
+            address.chop(1);
+        address += QString::number(i);
+        QString command = "wget -P \"" + QApplication::applicationDirPath() + "/pages\" "
+                + address + " --no-check-certificate -E";
+        QByteArray ba = command.toLatin1();
+        const char *c_str = ba.data();
+        system(c_str);
+        delete c_str;
+    }
 }

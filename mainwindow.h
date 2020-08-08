@@ -31,6 +31,10 @@ private slots:
 
     void setSubWindow(QWidget* widget, QString title);
 
+    void on_startDownload_clicked();
+
+    void setBasya(int emotion);
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
