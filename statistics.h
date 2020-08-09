@@ -15,7 +15,7 @@ class Statistics : public QWidget
 
 public:
     explicit Statistics(QWidget *parent = nullptr);
-    void setData(const int correctAnswers);
+    void setData(const int correctAnswers, const int max);
     ~Statistics();
 
 private:
