@@ -25,6 +25,7 @@ Tests::Tests(const QJsonArray questions, Statistics* statWindwow, QWidget *paren
     connect(ui->thirdAnsw, SIGNAL(clicked()), this, SLOT(checkAnswer()));
     connect(ui->fourthAnsw, SIGNAL(clicked()), this, SLOT(checkAnswer()));
     connect(ui->fifthAnsw, SIGNAL(clicked()), this, SLOT(checkAnswer()));
+    ui->progressBar->setMaximum(questions.size());
 }
 
 Tests::~Tests()
@@ -38,15 +39,15 @@ void Tests::setQuestion(){
         return;
     }
     emit answer(static_cast<int>(Results::CHANGE_RESULT));
-    if(currentQuestion < 29){
+    if(currentQuestion < questions.size() - 1){
         ++currentQuestion;
         ui->progressBar->setValue(currentQuestion);
     }
     else{
-        statWindow->setData(correctAnswers);
-        if(correctAnswers == 30)
+        statWindow->setData(correctAnswers, questions.size());
+        if(correctAnswers == questions.size())
             emit answer(static_cast<int>(Results::PERFECT_RESULT));
-        else if(correctAnswers >= 20)
+        else if(correctAnswers >= questions.size() - 5)
             emit answer(static_cast<int>(Results::PASSED_RESULT));
         else
             emit answer(static_cast<int>(Results::FAILED_RESULT));
@@ -80,7 +81,7 @@ void Tests::setQuestion(){
         else
             answerButtons[i]->setText(answer);
     }
-    if(currentQuestion == 29)
+    if(currentQuestion == questions.size() - 1)
         ui->nextQuestBut->setText("Завершить тест");
 }
 
