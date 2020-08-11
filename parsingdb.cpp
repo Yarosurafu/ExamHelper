@@ -70,7 +70,9 @@ void ParsingDB::parse(const QString path){
                 QString question;
                 do{
                     question = in.readLine();
-                }while(!question.contains("<h4><b>"));
+                }while(!question.contains("<h4><b>") && !in.atEnd());
+                if(in.atEnd())
+                    break;
                 question.remove("<h4><b>");
                 question.remove("</b>");
                 question.remove("<ul>");
@@ -87,7 +89,7 @@ void ParsingDB::parse(const QString path){
                     do{
                         answer = in.readLine();
                         answer.remove("\t");
-                    } while(answer.contains("</li>") || answer == "");
+                    } while((answer.contains("</li>") || answer == "") && !in.atEnd());
 
                     //If answer is correct
                     if(answer.contains("<li class=\"list-group-item\" style=\"background-color:#C6FFCD;border:0px none;\">")){

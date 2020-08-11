@@ -11,6 +11,14 @@
         <file>images/ok.png</file>
         <file>images/note.png</file>
         <file>images/more.png</file>
+        <file>images/Basya-def.png</file>
+        <file>images/Basya-20end.png</file>
+        <file>images/Basya-30end.png</file>
+        <file>images/Basya-pass.png</file>
+        <file>images/Basya-wrong.png</file>
+        <file>images/Basya-wait.png</file>
+        <file>images/Basya-notif.png</file>
+        <file>images/BasyaSearch.png</file>
     </qresource>
     <qresource prefix="/database">
         <file>database/test.json</file>

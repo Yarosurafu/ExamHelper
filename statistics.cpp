@@ -11,9 +11,9 @@ Statistics::Statistics(QWidget *parent) :
     scene = new QGraphicsScene(this);
 }
 
-void Statistics::setData(const int correctAnswers){
+void Statistics::setData(const int correctAnswers, const int max){
 
-    int angle = correctAnswers * 360 * 16 / 30;
+    int angle = correctAnswers * 360 * 16 / max;
     QPen blackPen(Qt::black);
     QPen whitePen(Qt::white);
     QBrush redBrush(Qt::red);
@@ -30,10 +30,10 @@ void Statistics::setData(const int correctAnswers){
     center->setSpanAngle(angle);
     center->setStartAngle(1440);
     scene->addItem(center);
-    scene->addText(QString::number(correctAnswers * 100 / 30) + "%");
+    scene->addText(QString::number(correctAnswers * 100 / max) + "%");
     ui->statView->setScene(scene);
     ui->correctQuant->setText(QString::number(correctAnswers));
-    ui->incorrectQuant->setText(QString::number(30 - correctAnswers));
+    ui->incorrectQuant->setText(QString::number(max - correctAnswers));
     ui->statView->repaint();
 }
 

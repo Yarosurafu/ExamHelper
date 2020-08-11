@@ -51,7 +51,7 @@ QPushButton:pressed{
      <property name="styleSheet">
       <string notr="true">QPushButton{	
 	color: black;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
 	border: 2px solid rgb(0, 0, 255);
 	padding: 6px;
 	border-radius: 20px 10px;

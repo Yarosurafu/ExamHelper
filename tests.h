@@ -19,6 +19,15 @@ public:
     explicit Tests(const QJsonArray questions, Statistics* statWindwow, QWidget *parent = nullptr);
     ~Tests();
 
+    enum class Results{
+        CORRECT_RESULT,
+        WRONG_RESULT,
+        PASSED_RESULT,
+        FAILED_RESULT,
+        PERFECT_RESULT,
+        CHANGE_RESULT
+    };
+
 private:
     QJsonArray questions;
     int currentQuestion = -1;
@@ -31,7 +40,9 @@ private:
     bool checkButtons();
 private slots:
     void setQuestion();
+
     void checkAnswer();
+
     void on_setReminderBut_clicked();
 
     void on_more_1_clicked();
@@ -47,6 +58,7 @@ private slots:
 signals:
     void testEnd();
     void notification(QJsonObject question);
+    void answer(int result);
 };
 
 #endif // TESTS_H

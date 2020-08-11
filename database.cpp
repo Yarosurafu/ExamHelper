@@ -40,10 +40,14 @@ DataBase::DataBase()
  * empty question.
  */
 QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
+    QJsonArray matters;
     QJsonObject currMatter;
     QJsonArray questions;
     //----------Searching key-matter----------
     for(int i = 0; i < subjects_m.size(); ++i){
+        if(matter == "Искать во всех темах"){
+            break;
+        }
         currMatter = subjects_m[i].toObject();
         if(currMatter["subject"].toString() == matter)
             break;
@@ -59,23 +63,29 @@ QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
     //----------------------------------------
 
     //------Searching questions by the key----
-    QJsonArray allQuestions = currMatter["questions"].toArray();
-    QJsonObject question;
-    for(int i = 0; i < allQuestions.size(); ++i){
-        question = allQuestions[i].toObject();
-        //Continue if current questions doesn't contain a key-word or phrase
-        if(!question["question"].toString().contains(key, Qt::CaseInsensitive))
-            continue;
-        //Searching true answer to the current question
-        QJsonArray questionAnswers = question["answers"].toArray();
-        for(int j = 0; j < questionAnswers.size(); ++j)
-            if(questionAnswers[j].toString().contains("*")){
-                question = {
-                    {"question", question["question"].toString()},
-                    {"answer", questionAnswers[j].toString()}
-                };
-                questions.append(question);
-            }
+    for(int i = 0; i < subjects_m.size(); ++i){
+        if(matter == "Искать во всех темах")
+            currMatter = subjects_m[i].toObject();
+        QJsonArray allQuestions = currMatter["questions"].toArray();
+        QJsonObject question;
+        for(int i = 0; i < allQuestions.size(); ++i){
+            question = allQuestions[i].toObject();
+            //Continue if current questions doesn't contain a key-word or phrase
+            if(!question["question"].toString().contains(key, Qt::CaseInsensitive))
+                continue;
+            //Searching true answer to the current question
+            QJsonArray questionAnswers = question["answers"].toArray();
+            for(int j = 0; j < questionAnswers.size(); ++j)
+                if(questionAnswers[j].toString().contains("*")){
+                    question = {
+                        {"question", question["question"].toString()},
+                        {"answer", questionAnswers[j].toString()}
+                    };
+                    questions.append(question);
+                }
+        }
+        if(matter != "Искать во всех темах")
+            break;
     }
     //----------------------------------------
     return questions;

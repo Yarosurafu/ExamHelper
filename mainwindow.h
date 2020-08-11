@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMdiArea>
 #include "database.h"
+#include "notification.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,11 +31,20 @@ private slots:
 
     void on_startTest_clicked();
 
-    void setSubWindow(QWidget* widget, QString title);
+    void setSubWindow(QWidget* widget, QString title, QMdiArea* area);
+
+    void on_startDownload_clicked();
+
+    void setBasya(int emotion);
+
+    void on_refreshNotif_clicked();
+
+    void on_startNotif_clicked();
 
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
+    Notification notif;
     QJsonArray searchedQuestions_m;
     int currentQuestionInd;
     void setSearchedQuestion();
