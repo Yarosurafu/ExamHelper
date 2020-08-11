@@ -18,6 +18,7 @@
         <file>images/Basya-wrong.png</file>
         <file>images/Basya-wait.png</file>
         <file>images/Basya-notif.png</file>
+        <file>images/BasyaSearch.png</file>
     </qresource>
     <qresource prefix="/database">
         <file>database/test.json</file>
