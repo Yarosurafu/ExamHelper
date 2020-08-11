@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     std::vector<QString> subjectsNames = db_m.getSubjectsNames();
+    ui->matterComboBox->addItem("Искать во всех темах");
     for(size_t i = 0; i < subjectsNames.size(); ++i){
         ui->matterComboBox->addItem(subjectsNames[i]);
         ui->mattersList->addItem(subjectsNames[i]);
