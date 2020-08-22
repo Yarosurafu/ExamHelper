@@ -32,6 +32,13 @@ NfCreator::~NfCreator()
 
 void NfCreator::setQuestion(QJsonObject questionArg){
     m_question = questionArg;
+    ui->twelveHNotif->setChecked(false);
+    ui->twelveHNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+    ui->oneDayNotif->setChecked(false);
+    ui->oneDayNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+    ui->threeDaysNotif->setChecked(false);
+    ui->threeDaysNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+
     qDebug() << m_question << "\n";
 }
 
