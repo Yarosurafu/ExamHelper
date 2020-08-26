@@ -5,6 +5,7 @@
 #include <QMdiArea>
 #include "database.h"
 #include "notification.h"
+#include "config.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,11 +42,17 @@ private slots:
 
     void on_startNotif_clicked();
 
+    void on_applyButton_clicked();
+
+    void on_applyQuest_clicked();
+
 private:
     Ui::MainWindow *ui;
     DataBase db_m;
     Notification notif;
+    Config conf;
     QJsonArray searchedQuestions_m;
+    int questionQuantity = 20;
     int currentQuestionInd;
     void setSearchedQuestion();
 };
