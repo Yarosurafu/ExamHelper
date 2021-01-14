@@ -99,7 +99,7 @@ void ParsingDB::parseBooklet(const QString path){
                 while(question.at(0) == ' ')
                     question.remove(0, 1);
                 QString lastPart;
-                for(int i = 0; i < 6; ++i)
+                while(!lastPart.contains("<div class=\"krt_question\">"))
                     lastPart = in.readLine();
                 lastPart.remove("<div class=\"krt_question\">");
                 lastPart.remove("</div>");
@@ -119,12 +119,14 @@ void ParsingDB::parseBooklet(const QString path){
 
                     //If answer is correct
                     if(answer.contains("list-group-item-success")){
-                        answer.remove("<li class=\"list-group-item  list-group-item-success\" style=\"border:none;\">");
+                        answer = in.readLine();
+                        answer.remove("style=\"border:none;\">");
                         answer.remove("</li>");
                         answer.append("*");
                     }
                     else{
-                        answer.remove("<li class=\"list-group-item \" style=\"border:none;\">");
+                        answer = in.readLine();
+                        answer.remove("style=\"border:none;\">");
                         answer.remove("</li>");
                     }
                     while(answer.at(0) == ' ')
