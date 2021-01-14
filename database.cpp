@@ -92,7 +92,7 @@ QJsonArray DataBase::searchQuestion(const QString matter, const QString key){
 }
 
 //TODO: finish method. Now it's just buffer
-QJsonArray DataBase::getTestVariant(const QString matter){
+QJsonArray DataBase::getTestVariant(const QString matter, const int quantity){
     QJsonObject subject;
     for(int i = 0; i < subjects_m.size(); ++i){
         subject = subjects_m[i].toObject();
@@ -103,7 +103,7 @@ QJsonArray DataBase::getTestVariant(const QString matter){
     QJsonArray variant;
     std::mt19937 mersenne(time(0));
     std::uniform_int_distribution<> distrib(0, allQuestions.size() - 1);
-    for(int i = 0; i < 30; ++i){
+    for(int i = 0; i < quantity; ++i){
         variant.push_back(allQuestions[distrib(mersenne)]);
     }
     return variant;
