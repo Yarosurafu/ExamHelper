@@ -69,16 +69,16 @@ void Tests::setQuestion(){
         if(answer.contains("*")){
             while(answer.contains("*"))
                 answer.chop(1);
-            if(answer.size() > 38){
+            /*if(answer.size() > 38){
                 answer = answer.remove(35, answer.size() - 1) + "...";
-            }
+            }*/
             currCorrectAnsw = answer;
         }
-        if(answer.size() > 38){
+        /*if(answer.size() > 38){
             answer = answer.remove(35, answer.size() - 1) + "...";
             answerButtons[i]->setText(answer);
-        }
-        else
+        }*/
+        //else
             answerButtons[i]->setText(answer);
     }
     if(currentQuestion == questions.size() - 1)
