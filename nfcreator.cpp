@@ -19,10 +19,14 @@ NfCreator::NfCreator(QWidget *parent) :
     ui->twelveHNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
     ui->oneDayNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
     ui->threeDaysNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
-
+    std::vector<QString> buttons = config.getButtons();
+    ui->twelveHNotif->setText(buttons.at(0));
+    ui->oneDayNotif->setText(buttons.at(1));
+    ui->threeDaysNotif->setText(buttons.at(2));
     connect(ui->twelveHNotif, &QPushButton::clicked, this, &NfCreator::on_hours_clicked);
     connect(ui->oneDayNotif, &QPushButton::clicked, this, &NfCreator::on_hours_clicked);
     connect(ui->threeDaysNotif, &QPushButton::clicked, this, &NfCreator::on_hours_clicked);
+
 }
 
 NfCreator::~NfCreator()
@@ -32,6 +36,13 @@ NfCreator::~NfCreator()
 
 void NfCreator::setQuestion(QJsonObject questionArg){
     m_question = questionArg;
+    ui->twelveHNotif->setChecked(false);
+    ui->twelveHNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+    ui->oneDayNotif->setChecked(false);
+    ui->oneDayNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+    ui->threeDaysNotif->setChecked(false);
+    ui->threeDaysNotif->setStyleSheet("QPushButton{	\n	color: black;\n	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.841346, y2:0.756, stop:0 rgba(170, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));\n	border: 2px solid rgb(0, 0, 255);\n	padding: 6px;\n	border-radius: 20px 10px;\n}\n\nQPushButton:pressed{\n	color: red;\n	border: 4px solid red;\n	border-radius: 20px 10px;\n}");
+
     qDebug() << m_question << "\n";
 }
 
@@ -45,6 +56,20 @@ void NfCreator::on_createNotifBut_clicked()
     QString time = ui->timeEdit->text().replace(":", "-");
     writeToJson();
     emit exit();
+}
+
+int NfCreator::getDateByString(QString string){
+    QString quantity = string;
+    while(quantity.at(quantity.size() - 1) != ' ')
+        quantity.chop(1);
+    quantity.chop(1);
+    int quantityInt = quantity.toInt();
+    if(string.contains("мин"))
+        return quantityInt * 60;
+    else if(string.contains("час"))
+        return quantityInt * 3600;
+    else
+        return quantityInt * 86400;
 }
 
 void NfCreator::writeToJson(){
@@ -67,19 +92,19 @@ void NfCreator::writeToJson(){
     QDate chosenDate;
     QString timeS;
     if(ui->twelveHNotif->isChecked()){
-        QDateTime nextDateTime = QDateTime::currentDateTime().addSecs(43200);
+        QDateTime nextDateTime = QDateTime::currentDateTime().addSecs(getDateByString(ui->twelveHNotif->text()));
         chosenDate = nextDateTime.date();
         timeS = nextDateTime.time().toString();
         ui->twelveHNotif->setChecked(false);
     }
     else if(ui->oneDayNotif->isChecked()){
-        QDateTime nextDateTime = QDateTime::currentDateTime().addDays(1);
+        QDateTime nextDateTime = QDateTime::currentDateTime().addSecs(getDateByString(ui->oneDayNotif->text()));
         chosenDate = nextDateTime.date();
         timeS = nextDateTime.time().toString();
         ui->oneDayNotif->setChecked(false);
     }
     else if(ui->threeDaysNotif->isChecked()){
-        QDateTime nextDateTime = QDateTime::currentDateTime().addDays(3);
+        QDateTime nextDateTime = QDateTime::currentDateTime().addSecs(getDateByString(ui->threeDaysNotif->text()));
         chosenDate = nextDateTime.date();
         timeS = nextDateTime.time().toString();
         ui->threeDaysNotif->setChecked(false);

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>720</height>
+    <height>771</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -828,137 +828,6 @@ QPushButton:pressed{
         <string>Настройки</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QFrame" name="frame_2">
-          <property name="styleSheet">
-           <string notr="true">QFrame{
-	
-	background-color: ;
-	background-color: rgb(22, 40, 52);
-}</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <property name="lineWidth">
-           <number>3</number>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="2" column="1">
-            <widget class="QPushButton" name="pickFileButt">
-             <property name="font">
-              <font>
-               <family>Times New Roman</family>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{	
-	color: rgb(4, 232, 236);
-	background-color: rgb(22, 40, 52);
-	border: 1px solid rgb(4, 232, 236);
-	padding: 6px;
-	border-radius: 20px 10px;
-}
-
-QPushButton:pressed{
-	color: red;
-	border: 1px solid red;
-	border-radius: 20px 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Выбор папки</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="3">
-            <widget class="QTextBrowser" name="debugWindow">
-             <property name="styleSheet">
-              <string notr="true">QTextBrowser{
-	color: rgb(255, 255, 255);
-}</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="parseButt">
-             <property name="font">
-              <font>
-               <family>Times New Roman</family>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{	
-	color: rgb(4, 232, 236);
-	background-color: rgb(22, 40, 52);
-	border: 1px solid rgb(4, 232, 236);
-	padding: 6px;
-	border-radius: 20px 10px;
-}
-
-QPushButton:pressed{
-	color: red;
-	border: 1px solid red;
-	border-radius: 20px 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Начать анализ</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLineEdit" name="directoryLine">
-             <property name="styleSheet">
-              <string notr="true">QLineEdit{
-	gridline-color: rgb(4, 232, 236);
-	border: 1px solid rgb(33, 59, 76);	
-	background-color: rgb(33, 59, 76);	
-	color: rgb(255, 255, 255);	
-	selection-background-color: rgb(255, 255, 255);	
-	selection-color: rgb(0, 0, 0);	
-	font: 75 12pt &quot;Times New Roman&quot;;
-	padding: 6px;
-	border: 1px solid grey;
-	border-radius: 5px;
-}</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QLabel" name="label_4">
-             <property name="font">
-              <font>
-               <family>Times New Roman</family>
-               <pointsize>14</pointsize>
-               <italic>true</italic>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QLabel{
-	color: rgb(4, 232, 236);
-	text-align: center;
-}</string>
-             </property>
-             <property name="text">
-              <string>СОСТАВИТЬ БАЗУ ТЕСТОВ ИЗ ВЕБ-СТРАНИЦ</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QFrame" name="frame_3">
           <property name="styleSheet">
@@ -1101,6 +970,365 @@ QPushButton:pressed{
              </property>
              <property name="text">
               <string>Начать скачивание</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_2">
+          <property name="styleSheet">
+           <string notr="true">QFrame{
+	
+	background-color: ;
+	background-color: rgb(22, 40, 52);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="2" column="2">
+            <widget class="QPushButton" name="parseButt">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Начать анализ</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="directoryLine">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	gridline-color: rgb(4, 232, 236);
+	border: 1px solid rgb(33, 59, 76);	
+	background-color: rgb(33, 59, 76);	
+	color: rgb(255, 255, 255);	
+	selection-background-color: rgb(255, 255, 255);	
+	selection-color: rgb(0, 0, 0);	
+	font: 75 12pt &quot;Times New Roman&quot;;
+	padding: 6px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>14</pointsize>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	color: rgb(4, 232, 236);
+	text-align: center;
+}</string>
+             </property>
+             <property name="text">
+              <string>СОСТАВИТЬ БАЗУ ТЕСТОВ ИЗ ВЕБ-СТРАНИЦ</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="pickFileButt">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Выбор папки</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="3">
+            <widget class="QTextBrowser" name="debugWindow">
+             <property name="styleSheet">
+              <string notr="true">QTextBrowser{
+	color: rgb(255, 255, 255);
+}</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QFrame" name="frame_4">
+          <property name="styleSheet">
+           <string notr="true">QFrame{
+	
+	background-color: ;
+	background-color: rgb(22, 40, 52);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>14</pointsize>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	color: rgb(4, 232, 236);
+	text-align: center;
+}</string>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text">
+              <string>НАСТРОЙКА КНОПОК БЫСТРОГО ДОСТУПА</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLineEdit" name="firstLine">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	gridline-color: rgb(4, 232, 236);
+	border: 1px solid rgb(33, 59, 76);	
+	background-color: rgb(33, 59, 76);	
+	color: rgb(255, 255, 255);	
+	selection-background-color: rgb(255, 255, 255);	
+	selection-color: rgb(0, 0, 0);	
+	font: 75 12pt &quot;Times New Roman&quot;;
+	padding: 6px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="thirdLine">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	gridline-color: rgb(4, 232, 236);
+	border: 1px solid rgb(33, 59, 76);	
+	background-color: rgb(33, 59, 76);	
+	color: rgb(255, 255, 255);	
+	selection-background-color: rgb(255, 255, 255);	
+	selection-color: rgb(0, 0, 0);	
+	font: 75 12pt &quot;Times New Roman&quot;;
+	padding: 6px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="secondLine">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	gridline-color: rgb(4, 232, 236);
+	border: 1px solid rgb(33, 59, 76);	
+	background-color: rgb(33, 59, 76);	
+	color: rgb(255, 255, 255);	
+	selection-background-color: rgb(255, 255, 255);	
+	selection-color: rgb(0, 0, 0);	
+	font: 75 12pt &quot;Times New Roman&quot;;
+	padding: 6px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="applyButton">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Применить</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QFrame" name="frame_5">
+          <property name="styleSheet">
+           <string notr="true">QFrame{
+	
+	background-color: ;
+	background-color: rgb(22, 40, 52);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>14</pointsize>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	color: rgb(4, 232, 236);
+	text-align: center;
+}</string>
+             </property>
+             <property name="text">
+              <string>КОЛИЧЕСТВО ВОПРОСОВ БИЛЕТА</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="questionQuant">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	gridline-color: rgb(4, 232, 236);
+	border: 1px solid rgb(33, 59, 76);	
+	background-color: rgb(33, 59, 76);	
+	color: rgb(255, 255, 255);	
+	selection-background-color: rgb(255, 255, 255);	
+	selection-color: rgb(0, 0, 0);	
+	font: 75 12pt &quot;Times New Roman&quot;;
+	padding: 6px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="applyQuest">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{	
+	color: rgb(4, 232, 236);
+	background-color: rgb(22, 40, 52);
+	border: 1px solid rgb(4, 232, 236);
+	padding: 6px;
+	border-radius: 20px 10px;
+}
+
+QPushButton:pressed{
+	color: red;
+	border: 1px solid red;
+	border-radius: 20px 10px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Применить</string>
              </property>
             </widget>
            </item>

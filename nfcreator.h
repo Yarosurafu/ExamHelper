@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QJsonObject>
+#include "config.h"
 
 namespace Ui {
 class NfCreator;
@@ -33,6 +34,8 @@ private:
     Ui::NfCreator *ui;
     QJsonObject m_question;
     QString m_date = "";
+    Config config;
+    int getDateByString(QString string);
     void writeToJson();
 };
 
