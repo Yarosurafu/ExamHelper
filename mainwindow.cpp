@@ -33,6 +33,11 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap basyaNotif(":/icons/images/Basya-notif.png");
     ui->basya->setPixmap(basyaNotif);
     ui->notifButt->setText("Количество уведомлений: " + QString::number(notif.getNotifQuant()));
+    std::vector<QString> buttons = conf.getButtons();
+    ui->firstLine->setText(buttons.at(0));
+    ui->secondLine->setText(buttons.at(1));
+    ui->thirdLine->setText(buttons.at(2));
+    ui->questionQuant->setText(QString::number(questionQuantity));
 }
 
 MainWindow::~MainWindow()
@@ -118,7 +123,7 @@ void MainWindow::on_startTest_clicked()
     QString selectedMatter = ui->mattersList->currentItem()->text();
     NfCreator *notif = new NfCreator(this);
     Statistics *statWindow = new Statistics(this);
-    Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter), statWindow, this);
+    Tests *testWindow = new Tests(db_m.getTestVariant(selectedMatter, questionQuantity), statWindow, this);
 
     setSubWindow(notif, "Создать уведомление", ui->mdiArea);
     setSubWindow(statWindow, "Результаты", ui->mdiArea);
@@ -208,4 +213,25 @@ void MainWindow::on_startNotif_clicked()
     connect(statWindow, &Statistics::repeat, ui->notifArea, &QMdiArea::closeAllSubWindows);
     notif.deleteCurrentQuestionsFromFile();
     on_refreshNotif_clicked();
+}
+
+void MainWindow::on_applyButton_clicked()
+{
+    std::vector<QString> newButtons;
+    newButtons.push_back(ui->firstLine->text());
+    newButtons.push_back(ui->secondLine->text());
+    newButtons.push_back(ui->thirdLine->text());
+    conf.saveOptions(newButtons);
+    QMessageBox::information(this, "Выполнено", "Настройки применены");
+}
+
+void MainWindow::on_applyQuest_clicked()
+{
+    int newQuant = ui->questionQuant->text().toInt();
+    if(newQuant < 15){
+        QMessageBox::critical(this, "Ошибка", "Количество вопросов не должно быть меньше 15");
+        return;
+    }
+    questionQuantity = newQuant;
+    QMessageBox::information(this, "Выполнено", "Настройки применены");
 }
